@@ -36,14 +36,6 @@ export const experienc = [
         period: "Feb 2024 – Apr 2024",
         badge: "Internship",
     },
-    {
-        title: "Software Development Intern",
-        company: "Shenzhen Wande Software Co., Ltd.",
-        logo: "/logos/wande.png",
-        location: "Shenzhen, China",
-        period: "May 2021 – Sep 2021",
-        badge: "Internship",
-    },
 ];
 
 export const educations = [
@@ -57,7 +49,7 @@ export const educations = [
     },
     {
         program: "Computer Science & Data Science",
-        school: "University of Wisconsin–Madison",
+        school: "University of Wisconsin – Madison",
         logo: "src/assets/logos/uwmadison.png",
         location: "Madison, Wisconsin",
         period: "Sep 2020 – May 2024",

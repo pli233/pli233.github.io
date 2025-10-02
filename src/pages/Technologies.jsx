@@ -1,39 +1,36 @@
 import React from "react";
 import { Container, Box, Typography, Grid, Paper, Chip, Stack } from "@mui/material";
 import {
-    Javascript, Html, Css, GitHub, Storage, Terminal, SmartToy, BugReport
+    Code, Cloud, Storage, Psychology, IntegrationInstructions, FactCheck
 } from "@mui/icons-material";
 
+// === 你的技术栈（按你给的列表 + 两项实践）===
 const stacks = [
     {
-        title: "Frontend",
-        icon: <Html />,
-        items: ["React", "React Router", "Vite/CRA", "MUI", "Axios"],
+        title: "Languages",
+        icon: <Code />,
+        // 顺序保持与你给的一致
+        items: ["Python", "Java", "C", "Linux Shell", "SQL", "R", "HTML", "CSS", "JavaScript"],
     },
     {
-        title: "Language",
-        icon: <Javascript />,
-        items: ["JavaScript", "TypeScript", "Python"],
+        title: "AI / ML",
+        icon: <Psychology />,
+        items: ["TensorFlow", "PyTorch", "LangChain", "Lightly"],
     },
     {
-        title: "Backend",
-        icon: <Terminal />,
-        items: ["Node.js", "Express", "REST APIs"],
+        title: "Frameworks",
+        icon: <Code />,
+        items: ["React", "Spring Boot", "Django", "GTEST", "MOCKCPP"],
     },
     {
-        title: "Data / DB",
+        title: "Databases",
         icon: <Storage />,
-        items: ["PostgreSQL", "SQLite", "Pandas"],
+        items: ["MySQL", "MongoDB", "Redis"],
     },
     {
-        title: "ML / Tools",
-        icon: <SmartToy />,
-        items: ["Scikit-learn", "Jupyter", "Matplotlib"],
-    },
-    {
-        title: "DevOps / Others",
-        icon: <GitHub />,
-        items: ["Git/GitHub", "Nginx", "Linux"],
+        title: "Project Management",
+        icon: <FactCheck />,
+        items: ["Github", "CI/CD", "Agile / Scrum", "Kanban"],
     },
 ];
 
@@ -45,7 +42,7 @@ export default function Technologies() {
                     Technologies
                 </Typography>
                 <Typography variant="body1" color="text.secondary" sx={{ mb: 3 }}>
-                    A snapshot of the tools and libraries I use frequently.
+                    A snapshot of the tools and libraries I used.
                 </Typography>
 
                 <Grid container spacing={2}>
