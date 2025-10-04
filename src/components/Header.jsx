@@ -1,7 +1,7 @@
 import React from "react";
 import { Link, NavLink } from "react-router-dom";
 import { AppBar, Toolbar, Stack, Button, Container, Box } from "@mui/material";
-
+import signature from "../assets/signature.png";
 // 可调：品牌签名距离右侧的间距（px）
 // 数值越大，签名会离右边更远（视觉上更靠中/靠左一点）
 const BRAND_RIGHT_GAP_PX = 600;
@@ -41,7 +41,7 @@ export default function Header() {
                     >
                         <Box
                             component="img"
-                            src="../src/assets/signature.png"
+                            src= {signature}
                             alt="Peiyuan Li"
                             sx={{
                                 height: 28,        // 签名高度（可按需调大/调小）
