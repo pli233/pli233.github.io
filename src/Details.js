@@ -28,7 +28,7 @@ export const socialMediaUrl = {
 
 export const experienc = [
     {
-        title: "Software Engineer Intern",
+        title: "AI Infrastructure Engineer Intern",
         company: "Huawei",
         logo: huaweiLogo,
         location: "Shenzhen, China",
