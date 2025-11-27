@@ -1,173 +1,89 @@
-import React from "react";
-import {
-    Box, Grid, Paper, Stack, Typography, Avatar, Divider, Chip
-} from "@mui/material";
-import { School as SchoolIcon, LocationOn } from "@mui/icons-material";
-
-// 可调：标题右移、左右间距、右侧 meta 的右侧内边距
-const TITLE_LEFT_OFFSET_PX = 0;
-const META_LEFT_GAP_PX = 0;
-const META_RIGHT_PADDING_PX = 20;
-
-const Pill = ({ label }) => (
-    <Chip
-        label={label}
-        size="small"
-        sx={{
-            borderRadius: 9999,
-            bgcolor: "success.light",
-            color: "success.contrastText",
-            "& .MuiChip-label": { px: 1.2, fontWeight: 600 },
-        }}
-    />
-);
-
-export default function SchoolCard({
-                                       program,
-                                       degree,
-                                       school,
-                                       period,
-                                       location,
-                                       badge,
-                                       logo,
-                                       highlights = [],
-                                       gpa,
-                                   }) {
+export default function SchoolCard({ program, degree, school, period, location, badge, logo, highlights = [], gpa }) {
     const title = program ?? degree;
 
     return (
-        <Paper
-            variant="outlined"
-            sx={{
-                p: { xs: 2, md: 3 },
-                pr: { xs: 2, md: `${Math.max(0, META_RIGHT_PADDING_PX)}px` },
-            }}
-        >
-            {/* 关键：不换行，保证右侧信息始终在 Logo 的右边 */}
-            <Grid
-                container
-                columnSpacing={3}
-                alignItems="center"
-                wrap="nowrap"
-            >
-                {/* 左：独立 Logo 区（固定宽度，不参与挤压） */}
-                <Grid
-                    item
-                    sx={{ flex: "0 0 auto" }}
-                >
-                    <Box
-                        sx={{
-                            width: { xs: 120, md: 140 },
-                            height: { xs: 120, md: 140 },
-                            border: 1,
-                            borderColor: "divider",
-                            display: "flex",
-                            alignItems: "center",
-                            justifyContent: "center",
-                            bgcolor: "background.paper",
-                        }}
-                    >
+        <div className="glass-card p-6 group">
+            <div className="flex flex-col sm:flex-row gap-6">
+                {/* Logo Container */}
+                <div className="flex-shrink-0">
+                    <div className="w-24 h-24 sm:w-32 sm:h-32 rounded-2xl bg-white dark:bg-gray-900 p-4 flex items-center justify-center border border-gray-200 dark:border-gray-700 group-hover:border-rose-500/50 dark:group-hover:border-rose-400/50 transition-all duration-300 group-hover:shadow-lg group-hover:shadow-rose-500/20">
                         {logo ? (
-                            <Avatar
+                            <img
                                 src={logo}
                                 alt={school}
-                                variant="rounded"
-                                sx={{
-                                    width: "88%",
-                                    height: "88%",
-                                    bgcolor: "transparent",
-                                    img: { objectFit: "contain" },
-                                }}
+                                className="w-full h-full object-contain transition-transform duration-300 group-hover:scale-110"
                             />
                         ) : (
-                            <Avatar variant="rounded" sx={{ width: "88%", height: "88%" }}>
-                                <SchoolIcon />
-                            </Avatar>
+                            <svg className="w-12 h-12 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 14l9-5-9-5-9 5 9 5z" />
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 14l9-5-9-5-9 5 9 5zm0 0l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0012 20.055a11.952 11.952 0 00-6.824-2.998 12.078 12.078 0 01.665-6.479L12 14z" />
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 14l9-5-9-5-9 5 9 5zm0 0v6" />
+                            </svg>
                         )}
-                    </Box>
-                </Grid>
+                    </div>
+                </div>
 
-                {/* 右：信息区（可压缩，最小宽度 0 以允许换行但不掉行） */}
-                <Grid
-                    item
-                    sx={{ flex: "1 1 auto", minWidth: 0 }}
-                >
-                    {/* 顶部：标题（左）  ←→  Meta（右） */}
-                    <Stack
-                        direction="row"
-                        alignItems="flex-start"
-                        spacing={1}
-                    >
-                        {/* 左侧标题区（包括 学位/专业 + 学校名） */}
-                        <Box sx={{ flex: 1, minWidth: 0 }}>
-                            <Typography
-                                variant="h6"
-                                sx={{
-                                    fontWeight: 800,
-                                    minWidth: 0,
-                                    pl: { xs: 0, md: `${TITLE_LEFT_OFFSET_PX}px` },
-                                    whiteSpace: "normal",
-                                    wordBreak: "break-word",
-                                }}
-                            >
+                {/* Content */}
+                <div className="flex-1 min-w-0">
+                    {/* Header */}
+                    <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-2 mb-3">
+                        <div className="flex-1">
+                            <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-1 group-hover:text-rose-600 dark:group-hover:text-rose-400 transition-colors">
                                 {title}
-                            </Typography>
-
-                            {/* 学校名：始终位于 Logo 右侧（属于同一行容器内） */}
-                            <Typography variant="body1" sx={{ mt: 0.5 }}>
+                            </h3>
+                            <p className="text-lg font-semibold text-gray-700 dark:text-gray-300">
                                 {school}
-                            </Typography>
-                        </Box>
+                            </p>
+                        </div>
 
-                        {/* 右侧 meta：贴最右 */}
-                        <Stack
-                            spacing={0.5}
-                            sx={{
-                                ml: "auto",
-                                pl: `${META_LEFT_GAP_PX}px`,
-                                textAlign: "right",
-                                alignItems: "flex-end",
-                                minWidth: 0,
-                            }}
-                        >
-                            <Stack direction="row" spacing={1} alignItems="center" sx={{ flexWrap: "nowrap" }}>
-                                {badge ? <Pill label={badge} /> : null}
-                                <Typography variant="body2" color="text.secondary" noWrap>
-                                    {period}
-                                </Typography>
-                            </Stack>
+                        {/* Badge */}
+                        {badge && (
+                            <span className="inline-flex items-center px-3 py-1 rounded-full text-sm font-semibold bg-gradient-to-r from-rose-500 to-pink-500 text-white shadow-md">
+                                {badge}
+                            </span>
+                        )}
+                    </div>
 
-                            <Stack direction="row" spacing={0.75} alignItems="center">
-                                <LocationOn fontSize="small" color="action" />
-                                <Typography variant="body2" color="text.secondary" noWrap>
-                                    {location}
-                                </Typography>
-                            </Stack>
-                        </Stack>
-                    </Stack>
+                    {/* Meta Info */}
+                    <div className="flex flex-wrap gap-4 mb-4 text-sm text-gray-600 dark:text-gray-400">
+                        <div className="flex items-center space-x-1">
+                            <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                            </svg>
+                            <span>{period}</span>
+                        </div>
+                        <div className="flex items-center space-x-1">
+                            <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+                            </svg>
+                            <span>{location}</span>
+                        </div>
+                        {gpa && (
+                            <div className="flex items-center space-x-1">
+                                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.784-.57-.38-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.519-4.674z" />
+                                </svg>
+                                <span>GPA: {gpa}</span>
+                            </div>
+                        )}
+                    </div>
 
-                    {/* 亮点 */}
-                    {highlights.length > 0 && (
-                        <>
-                            <Divider sx={{ my: 1.5 }} />
-                            <ul style={{ margin: 0, paddingLeft: 18 }}>
-                                {highlights.map((h) => (
-                                    <li key={h}>
-                                        <Typography variant="body2">{h}</Typography>
-                                    </li>
-                                ))}
-                            </ul>
-                        </>
+                    {/* Highlights */}
+                    {highlights && highlights.length > 0 && (
+                        <ul className="space-y-2">
+                            {highlights.map((highlight, index) => (
+                                <li key={index} className="flex items-start space-x-2 text-gray-700 dark:text-gray-300">
+                                    <svg className="w-5 h-5 text-rose-500 dark:text-rose-400 flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
+                                        <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
+                                    </svg>
+                                    <span>{highlight}</span>
+                                </li>
+                            ))}
+                        </ul>
                     )}
-
-                    {/* GPA（可选，右下角） */}
-                    {gpa && (
-                        <Stack direction="row" justifyContent="flex-end" sx={{ mt: 1 }}>
-                            <Typography variant="body2" color="text.secondary">GPA: {gpa}</Typography>
-                        </Stack>
-                    )}
-                </Grid>
-            </Grid>
-        </Paper>
+                </div>
+            </div>
+        </div>
     );
 }

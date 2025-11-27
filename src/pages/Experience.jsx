@@ -1,29 +1,35 @@
-import React from "react";
-import { Box, Container, Stack, Typography } from "@mui/material";
-import Work from "../Components/Work";
+import Work from "../components/Work";
 import { experienc } from "../Details";
 
 export default function Experience() {
     return (
-        <Box component="main" sx={{ minHeight: "calc(100vh - 56px - 56px)" }}>
-            <Container maxWidth="lg" sx={{ py: 4 }}>
-                <Typography variant="h3" sx={{ fontWeight: 900, mb: 2 }}>Experience</Typography>
+        <main className="min-h-screen pt-24 pb-16">
+            <div className="section-container">
+                <div className="mb-12">
+                    <h1 className="text-4xl sm:text-5xl font-bold text-gray-900 dark:text-white mb-4">
+                        Work <span className="gradient-text">Experience</span>
+                    </h1>
+                    <p className="text-lg text-gray-600 dark:text-gray-400">
+                        My professional journey and accomplishments
+                    </p>
+                </div>
 
-                <Stack spacing={3}>
-                    {experienc.map((j, idx) => (
-                        <Work
-                            key={`${j.company}-${j.title}-${idx}`}
-                            title={j.title}
-                            company={j.company}
-                            period={j.period}
-                            location={j.location}
-                            badge={j.badge}
-                            logo={j.logo}
-                            bullets={j.bullets}
-                        />
+                <div className="space-y-6">
+                    {experienc.map((job, idx) => (
+                        <div key={`${job.company}-${job.title}-${idx}`} className="animate-slide-up" style={{ animationDelay: `${idx * 0.1}s` }}>
+                            <Work
+                                title={job.title}
+                                company={job.company}
+                                period={job.period}
+                                location={job.location}
+                                badge={job.badge}
+                                logo={job.logo}
+                                bullets={job.bullets}
+                            />
+                        </div>
                     ))}
-                </Stack>
-            </Container>
-        </Box>
+                </div>
+            </div>
+        </main>
     );
 }

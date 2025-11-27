@@ -1,4 +1,3 @@
-import React from "react";
 import { Routes, Route } from "react-router-dom";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
@@ -11,18 +10,20 @@ import Resume from "./pages/Resume";
 
 export default function App() {
     return (
-        <>
+        <div className="flex flex-col min-h-screen">
             <Header />
-            <Routes>
-                <Route index element={<Home />} />
-                <Route path="/experience" element={<Experience />} />
-                <Route path="/education" element={<Education />} />
-                <Route path="/technologies" element={<Technologies />} />
-                <Route path="/contact" element={<Contact />} />
-                <Route path="/resume" element={<Resume />} />
-                <Route path="*" element={<Home />} />
-            </Routes>
+            <div className="flex-1">
+                <Routes>
+                    <Route index element={<Home />} />
+                    <Route path="/experience" element={<Experience />} />
+                    <Route path="/education" element={<Education />} />
+                    <Route path="/technologies" element={<Technologies />} />
+                    <Route path="/contact" element={<Contact />} />
+                    <Route path="/resume" element={<Resume />} />
+                    <Route path="*" element={<Home />} />
+                </Routes>
+            </div>
             <Footer />
-        </>
+        </div>
     );
 }

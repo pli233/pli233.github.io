@@ -1,144 +1,77 @@
-import React from "react";
-import { Box, Grid, Paper, Stack, Typography, Avatar, Divider, Chip } from "@mui/material";
-import { Business, LocationOn } from "@mui/icons-material";
-
-// ===== 可调：标题右移、左块与右 meta 的间距、meta 距卡片右侧内边距 =====
-const TITLE_LEFT_OFFSET_PX = 0;   // 标题整体向右偏移
-const META_LEFT_GAP_PX = 0;       // 左侧信息 ←→ 右 meta 的水平间距
-const META_RIGHT_PADDING_PX = 20;   // 右 meta 距离卡片右边的内边距
-
-const Pill = ({ label }) => (
-    <Chip
-        label={label}
-        size="small"
-        sx={{
-            borderRadius: 9999,
-            bgcolor: "success.light",
-            color: "success.contrastText",
-            "& .MuiChip-label": { px: 1.2, fontWeight: 600 },
-        }}
-    />
-);
-
-/**
- * props:
- *  - title      职位
- *  - company    公司
- *  - period     时间段（如 "Jul 2025 – Sep 2025"）
- *  - location   地点（如 "Shenzhen, China"）
- *  - badge      类型（如 "Internship"）
- *  - logo       /logos/xxx.png
- *  - bullets    string[]
- */
 export default function Work({ title, company, period, location, badge, logo, bullets = [] }) {
     return (
-        <Paper
-            variant="outlined"
-            sx={{ p: { xs: 2, md: 3 }, pr: { xs: 2, md: `${Math.max(0, META_RIGHT_PADDING_PX)}px` } }}
-        >
-            {/* 关键：整行不换行，保证右侧信息始终在 Logo 的右边 */}
-            <Grid container columnSpacing={3} alignItems="center" wrap="nowrap">
-                {/* 左：独立 Logo 区（固定尺寸 + contain） */}
-                <Grid item sx={{ flex: "0 0 auto" }}>
-                    <Box
-                        sx={{
-                            width: { xs: 120, md: 140 },
-                            height: { xs: 120, md: 140 },
-                            border: 1,
-                            borderColor: "divider",
-                            display: "flex",
-                            alignItems: "center",
-                            justifyContent: "center",
-                            bgcolor: "background.paper",
-                        }}
-                    >
+        <div className="glass-card p-6 group">
+            <div className="flex flex-col sm:flex-row gap-6">
+                {/* Logo Container */}
+                <div className="flex-shrink-0">
+                    <div className="w-24 h-24 sm:w-32 sm:h-32 rounded-2xl bg-white dark:bg-gray-900 p-4 flex items-center justify-center border border-gray-200 dark:border-gray-700 group-hover:border-red-500/50 dark:group-hover:border-red-400/50 transition-all duration-300 group-hover:shadow-lg group-hover:shadow-red-500/20">
                         {logo ? (
-                            <Avatar
+                            <img
                                 src={logo}
                                 alt={company}
-                                variant="rounded"
-                                sx={{
-                                    width: "88%",
-                                    height: "88%",
-                                    bgcolor: "transparent",
-                                    img: { objectFit: "contain" }, // 不拉伸不裁切
-                                }}
+                                className="w-full h-full object-contain transition-transform duration-300 group-hover:scale-110"
                             />
                         ) : (
-                            <Avatar variant="rounded" sx={{ width: "88%", height: "88%" }}>
-                                <Business />
-                            </Avatar>
+                            <svg className="w-12 h-12 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
+                            </svg>
                         )}
-                    </Box>
-                </Grid>
+                    </div>
+                </div>
 
-                {/* 右：信息区（可压缩，minWidth:0 允许内部文本换行但不掉行） */}
-                <Grid item sx={{ flex: "1 1 auto", minWidth: 0 }}>
-                    {/* 顶部：左标题  ←→ 右 meta（徽章/时间/地点 贴最右） */}
-                    <Stack direction="row" alignItems="flex-start" spacing={1}>
-                        {/* 左标题块（标题 & 公司名） */}
-                        <Box sx={{ flex: 1, minWidth: 0 }}>
-                            <Typography
-                                variant="h6"
-                                sx={{
-                                    fontWeight: 800,
-                                    minWidth: 0,
-                                    pl: { xs: 0, md: `${TITLE_LEFT_OFFSET_PX}px` }, // 标题向右挪
-                                    whiteSpace: "normal",
-                                    wordBreak: "break-word",
-                                }}
-                            >
+                {/* Content */}
+                <div className="flex-1 min-w-0">
+                    {/* Header */}
+                    <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-2 mb-3">
+                        <div className="flex-1">
+                            <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-1 group-hover:text-red-600 dark:group-hover:text-red-400 transition-colors">
                                 {title}
-                            </Typography>
-
-                            {/* 公司名（始终在 Logo 右侧，不会被挤到下一行） */}
-                            <Typography variant="body1" sx={{ mt: 0.5 }}>
+                            </h3>
+                            <p className="text-lg font-semibold text-gray-700 dark:text-gray-300">
                                 {company}
-                            </Typography>
-                        </Box>
+                            </p>
+                        </div>
 
-                        {/* 右 meta：ml:auto 顶到最右，pl 控制与左侧的间隙；右对齐 */}
-                        <Stack
-                            spacing={0.5}
-                            sx={{
-                                ml: "auto",
-                                pl: `${META_LEFT_GAP_PX}px`,
-                                textAlign: "right",
-                                alignItems: "flex-end",
-                                minWidth: 0,
-                            }}
-                        >
-                            <Stack direction="row" spacing={1} alignItems="center">
-                                {badge ? <Pill label={badge} /> : null}
-                                <Typography variant="body2" color="text.secondary" noWrap>
-                                    {period}
-                                </Typography>
-                            </Stack>
+                        {/* Badge */}
+                        {badge && (
+                            <span className="inline-flex items-center px-3 py-1 rounded-full text-sm font-semibold bg-gradient-to-r from-green-500 to-emerald-500 text-white shadow-md">
+                                {badge}
+                            </span>
+                        )}
+                    </div>
 
-                            <Stack direction="row" spacing={0.75} alignItems="center">
-                                <LocationOn fontSize="small" color="action" />
-                                <Typography variant="body2" color="text.secondary" noWrap>
-                                    {location}
-                                </Typography>
-                            </Stack>
-                        </Stack>
-                    </Stack>
+                    {/* Meta Info */}
+                    <div className="flex flex-wrap gap-4 mb-4 text-sm text-gray-600 dark:text-gray-400">
+                        <div className="flex items-center space-x-1">
+                            <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                            </svg>
+                            <span>{period}</span>
+                        </div>
+                        <div className="flex items-center space-x-1">
+                            <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+                            </svg>
+                            <span>{location}</span>
+                        </div>
+                    </div>
 
-                    {/* 要点 */}
-                    {bullets.length > 0 && (
-                        <>
-                            <Divider sx={{ my: 1.5 }} />
-                            <ul style={{ margin: 0, paddingLeft: 18 }}>
-                                {bullets.map((b) => (
-                                    <li key={b}>
-                                        <Typography variant="body2">{b}</Typography>
-                                    </li>
-                                ))}
-                            </ul>
-                        </>
+                    {/* Bullets */}
+                    {bullets && bullets.length > 0 && (
+                        <ul className="space-y-2">
+                            {bullets.map((bullet, index) => (
+                                <li key={index} className="flex items-start space-x-2 text-gray-700 dark:text-gray-300">
+                                    <svg className="w-5 h-5 text-red-500 dark:text-red-400 flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
+                                        <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
+                                    </svg>
+                                    <span>{bullet}</span>
+                                </li>
+                            ))}
+                        </ul>
                     )}
-                </Grid>
-            </Grid>
-        </Paper>
+                </div>
+            </div>
+        </div>
     );
 }

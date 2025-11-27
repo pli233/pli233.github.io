@@ -1,68 +1,74 @@
-import React from "react";
-import { Container, Box, Typography, Grid, Paper, Chip, Stack } from "@mui/material";
-import {
-    Code, Cloud, Storage, Psychology, IntegrationInstructions, FactCheck
-} from "@mui/icons-material";
-
-// === 你的技术栈（按你给的列表 + 两项实践）===
 const stacks = [
     {
         title: "Languages",
-        icon: <Code />,
-        // 顺序保持与你给的一致
+        icon: "💻",
         items: ["Python", "Java", "C", "Linux Shell", "SQL", "R", "HTML", "CSS", "JavaScript"],
     },
     {
         title: "AI / ML",
-        icon: <Psychology />,
+        icon: "🤖",
         items: ["TensorFlow", "PyTorch", "LangChain", "Lightly"],
     },
     {
         title: "Frameworks",
-        icon: <Code />,
+        icon: "⚛️",
         items: ["React", "Spring Boot", "Django", "GTEST", "MOCKCPP"],
     },
     {
         title: "Databases",
-        icon: <Storage />,
+        icon: "🗄️",
         items: ["MySQL", "MongoDB", "Redis"],
     },
     {
         title: "Project Management",
-        icon: <FactCheck />,
+        icon: "📋",
         items: ["Github", "CI/CD", "Agile / Scrum", "Kanban"],
     },
 ];
 
 export default function Technologies() {
     return (
-        <Box component="main" sx={{ minHeight: "calc(100vh - 56px - 64px)", display: "flex", alignItems: "center" }}>
-            <Container maxWidth="lg" sx={{ py: 4, width: "100%" }}>
-                <Typography variant="h4" sx={{ fontWeight: 700, mb: 1 }}>
-                    Technologies
-                </Typography>
-                <Typography variant="body1" color="text.secondary" sx={{ mb: 3 }}>
-                    A snapshot of the tools and libraries I used.
-                </Typography>
+        <main className="min-h-screen pt-24 pb-16">
+            <div className="section-container">
+                <div className="mb-12">
+                    <h1 className="text-4xl sm:text-5xl font-bold text-gray-900 dark:text-white mb-4">
+                        Tech <span className="gradient-text">Stack</span>
+                    </h1>
+                    <p className="text-lg text-gray-600 dark:text-gray-400">
+                        Technologies and tools I work with
+                    </p>
+                </div>
 
-                <Grid container spacing={2}>
-                    {stacks.map((sec) => (
-                        <Grid item xs={12} sm={6} md={4} key={sec.title}>
-                            <Paper variant="outlined" sx={{ p: 2 }}>
-                                <Stack direction="row" alignItems="center" spacing={1} sx={{ mb: 1 }}>
-                                    {sec.icon}
-                                    <Typography variant="subtitle1" fontWeight={700}>{sec.title}</Typography>
-                                </Stack>
-                                <Stack direction="row" spacing={1} useFlexGap flexWrap="wrap">
-                                    {sec.items.map((t) => (
-                                        <Chip key={t} label={t} variant="outlined" />
-                                    ))}
-                                </Stack>
-                            </Paper>
-                        </Grid>
+                <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                    {stacks.map((stack, idx) => (
+                        <div
+                            key={stack.title}
+                            className="glass-card p-6 group animate-slide-up"
+                            style={{ animationDelay: `${idx * 0.1}s` }}
+                        >
+                            <div className="flex items-center space-x-3 mb-4">
+                                <div className="text-4xl group-hover:scale-110 transition-transform duration-300">
+                                    {stack.icon}
+                                </div>
+                                <h3 className="text-xl font-bold text-gray-900 dark:text-white">
+                                    {stack.title}
+                                </h3>
+                            </div>
+
+                            <div className="flex flex-wrap gap-2">
+                                {stack.items.map((tech) => (
+                                    <span
+                                        key={tech}
+                                        className="px-3 py-1.5 rounded-full text-sm font-medium bg-white/50 dark:bg-gray-800/50 border border-gray-200 dark:border-gray-700 text-gray-700 dark:text-gray-300 hover:border-red-500 dark:hover:border-red-400 hover:text-red-600 dark:hover:text-red-400 transition-all duration-300 hover:scale-105 cursor-default"
+                                    >
+                                        {tech}
+                                    </span>
+                                ))}
+                            </div>
+                        </div>
                     ))}
-                </Grid>
-            </Container>
-        </Box>
+                </div>
+            </div>
+        </main>
     );
 }
