@@ -59,7 +59,7 @@ export default function Technologies() {
                                 {stack.items.map((tech) => (
                                     <span
                                         key={tech}
-                                        className="px-3 py-1.5 rounded-full text-sm font-medium bg-white/50 dark:bg-gray-800/50 border border-gray-200 dark:border-gray-700 text-gray-700 dark:text-gray-300 hover:border-red-500 dark:hover:border-red-400 hover:text-red-600 dark:hover:text-red-400 transition-all duration-300 hover:scale-105 cursor-default"
+                                        className="px-3 py-1.5 rounded-full text-sm font-medium bg-white/50 dark:bg-gray-800/50 border border-gray-200 dark:border-gray-700 text-gray-700 dark:text-gray-300 hover:border-blue-500 dark:hover:border-blue-400 hover:text-blue-600 dark:hover:text-blue-400 transition-all duration-300 hover:scale-105 cursor-default"
                                     >
                                         {tech}
                                     </span>

@@ -19,7 +19,7 @@ export default function Footer() {
                             href={socialMediaUrl.linkedin}
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="text-gray-600 dark:text-gray-400 hover:text-red-600 dark:hover:text-red-400 transition-colors text-sm font-medium"
+                            className="text-gray-600 dark:text-gray-400 hover:text-blue-600 dark:hover:text-blue-400 transition-colors text-sm font-medium"
                         >
                             LinkedIn
                         </a>
@@ -33,7 +33,7 @@ export default function Footer() {
                         </a>
                         <a
                             href={socialMediaUrl.email}
-                            className="text-gray-600 dark:text-gray-400 hover:text-pink-600 dark:hover:text-pink-400 transition-colors text-sm font-medium"
+                            className="text-gray-600 dark:text-gray-400 hover:text-cyan-600 dark:hover:text-cyan-400 transition-colors text-sm font-medium"
                         >
                             Email
                         </a>
@@ -44,7 +44,7 @@ export default function Footer() {
                         href="https://react.dev/"
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="flex items-center space-x-2 text-gray-600 dark:text-gray-400 hover:text-red-500 dark:hover:text-red-400 transition-colors group"
+                        className="flex items-center space-x-2 text-gray-600 dark:text-gray-400 hover:text-blue-500 dark:hover:text-blue-400 transition-colors group"
                         aria-label="Powered by React"
                     >
                         <img

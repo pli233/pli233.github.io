@@ -80,8 +80,8 @@ export default function Header() {
                                 className={({ isActive }) =>
                                     `px-3 lg:px-4 py-2 rounded-full text-sm lg:text-base font-medium transition-all duration-300 ${
                                         isActive
-                                            ? 'bg-gradient-to-r from-red-600 to-rose-600 text-white shadow-lg shadow-red-500/50'
-                                            : 'text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800 hover:text-red-600 dark:hover:text-red-400'
+                                            ? 'bg-gradient-to-r from-blue-600 to-sky-600 text-white shadow-lg shadow-blue-500/50'
+                                            : 'text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800 hover:text-blue-600 dark:hover:text-blue-400'
                                     }`
                                 }
                             >
@@ -156,7 +156,7 @@ export default function Header() {
                                     className={({ isActive }) =>
                                         `px-4 py-2 rounded-lg text-base font-medium transition-colors ${
                                             isActive
-                                                ? 'bg-gradient-to-r from-red-600 to-rose-600 text-white'
+                                                ? 'bg-gradient-to-r from-blue-600 to-sky-600 text-white'
                                                 : 'text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800'
                                         }`
                                     }

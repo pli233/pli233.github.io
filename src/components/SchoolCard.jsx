@@ -6,7 +6,7 @@ export default function SchoolCard({ program, degree, school, period, location, 
             <div className="flex flex-col sm:flex-row gap-6">
                 {/* Logo Container */}
                 <div className="flex-shrink-0">
-                    <div className="w-24 h-24 sm:w-32 sm:h-32 rounded-2xl bg-white dark:bg-gray-900 p-4 flex items-center justify-center border border-gray-200 dark:border-gray-700 group-hover:border-rose-500/50 dark:group-hover:border-rose-400/50 transition-all duration-300 group-hover:shadow-lg group-hover:shadow-rose-500/20">
+                    <div className="w-24 h-24 sm:w-32 sm:h-32 rounded-2xl bg-white dark:bg-gray-900 p-4 flex items-center justify-center border border-gray-200 dark:border-gray-700 group-hover:border-sky-500/50 dark:group-hover:border-sky-400/50 transition-all duration-300 group-hover:shadow-lg group-hover:shadow-sky-500/20">
                         {logo ? (
                             <img
                                 src={logo}
@@ -28,7 +28,7 @@ export default function SchoolCard({ program, degree, school, period, location, 
                     {/* Header */}
                     <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-2 mb-3">
                         <div className="flex-1">
-                            <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-1 group-hover:text-rose-600 dark:group-hover:text-rose-400 transition-colors">
+                            <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-1 group-hover:text-sky-600 dark:group-hover:text-sky-400 transition-colors">
                                 {title}
                             </h3>
                             <p className="text-lg font-semibold text-gray-700 dark:text-gray-300">
@@ -38,7 +38,7 @@ export default function SchoolCard({ program, degree, school, period, location, 
 
                         {/* Badge */}
                         {badge && (
-                            <span className="inline-flex items-center px-3 py-1 rounded-full text-sm font-semibold bg-gradient-to-r from-rose-500 to-pink-500 text-white shadow-md">
+                            <span className="inline-flex items-center px-3 py-1 rounded-full text-sm font-semibold bg-gradient-to-r from-green-500 to-emerald-500 text-white shadow-md">
                                 {badge}
                             </span>
                         )}
@@ -74,7 +74,7 @@ export default function SchoolCard({ program, degree, school, period, location, 
                         <ul className="space-y-2">
                             {highlights.map((highlight, index) => (
                                 <li key={index} className="flex items-start space-x-2 text-gray-700 dark:text-gray-300">
-                                    <svg className="w-5 h-5 text-rose-500 dark:text-rose-400 flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
+                                    <svg className="w-5 h-5 text-sky-500 dark:text-sky-400 flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
                                         <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
                                     </svg>
                                     <span>{highlight}</span>

@@ -32,7 +32,7 @@ export default function Resume() {
                                 href={socialMediaUrl.resume}
                                 target="_blank"
                                 rel="noopener noreferrer"
-                                className="text-red-600 dark:text-red-400 hover:underline font-medium"
+                                className="text-blue-600 dark:text-blue-400 hover:underline font-medium"
                             >
                                 open the PDF in a new tab
                             </a>
