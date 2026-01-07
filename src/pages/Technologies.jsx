@@ -22,7 +22,7 @@ const stacks = [
     {
         title: "Databases",
         icon: "🗄️",
-        items: ["Postgres", "MySQL", "MongoDB", "Redis"],
+        items: ["Postgres SQL", "MySQL", "MongoDB", "Redis"],
     },
     {
         title: "Project Management",
