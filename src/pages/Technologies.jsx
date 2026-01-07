@@ -2,12 +2,12 @@ const stacks = [
     {
         title: "Languages",
         icon: "💻",
-        items: ["Python", "Java", "C", "Linux Shell", "SQL", "R", "HTML", "CSS", "JavaScript"],
+        items: ["Python", "Java", "C", "SQL", "R", "HTML", "CSS", "JavaScript", "TypeScript", "GO"],
     },
     {
         title: "AI / ML",
         icon: "🤖",
-        items: ["TensorFlow", "PyTorch", "LangChain", "Lightly"],
+        items: ["TensorFlow", "PyTorch", "LangChain", "LangGraph", "RAG", "MCP", "Lightly"],
     },
     {
         title: "Frameworks",
@@ -15,14 +15,19 @@ const stacks = [
         items: ["React", "Spring Boot", "Django", "GTEST", "MOCKCPP"],
     },
     {
+        title: "UI / UX",
+        icon: "🎨",
+        items: ["Figma", "Tailwind", "Material UI"],
+    },
+    {
         title: "Databases",
         icon: "🗄️",
-        items: ["MySQL", "MongoDB", "Redis"],
+        items: ["Postgres", "MySQL", "MongoDB", "Redis"],
     },
     {
         title: "Project Management",
         icon: "📋",
-        items: ["Github", "CI/CD", "Agile / Scrum", "Kanban"],
+        items: ["Github", "CI/CD", "Agile / Scrum", "Kanban", "Jira", "Confluence", "GCP", "AWS", "Docker"],
     },
 ];
 

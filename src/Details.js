@@ -1,6 +1,7 @@
 import me from "/src/assets/me.jpg";
 import huaweiLogo from "/src/assets/logos/huawei.png";
 import epicLogo from "/src/assets/logos/epic.png";
+import greensandLogo from "/src/assets/logos/greensand.png";
 import brownLogo from "/src/assets/logos/brown.png";
 import uwmadisonLogo from "/src/assets/logos/uwmadison.png";
 import latestResume from "/src/assets/Peiyuan Li Resume 26NG.pdf"
@@ -27,6 +28,14 @@ export const socialMediaUrl = {
 };
 
 export const experienc = [
+    {
+        title: "AI Software Engineer Intern",
+        company: "Greensand AI",
+        logo: greensandLogo,
+        location: "Remote, US",
+        period: "Oct 2025 – Jan 2026",
+        badge: "Internship",
+    },
     {
         title: "AI Infrastructure Engineer Intern",
         company: "Huawei",
