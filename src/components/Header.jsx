@@ -1,13 +1,14 @@
 import { useState, useEffect } from "react";
-import { Link, NavLink } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import signature from "../assets/signature.png";
 
 export default function Header() {
     const [isDark, setIsDark] = useState(false);
     const [isScrolled, setIsScrolled] = useState(false);
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+    const [activeSection, setActiveSection] = useState("home");
+    const location = useLocation();
 
-    // Initialize dark mode from localStorage
     useEffect(() => {
         const savedTheme = localStorage.getItem('theme');
         const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
@@ -19,7 +20,6 @@ export default function Header() {
         }
     }, []);
 
-    // Toggle dark mode
     const toggleDarkMode = () => {
         setIsDark(!isDark);
         if (!isDark) {
@@ -31,35 +31,73 @@ export default function Header() {
         }
     };
 
-    // Handle scroll effect
     useEffect(() => {
         const handleScroll = () => {
             setIsScrolled(window.scrollY > 20);
+
+            // Update active section based on scroll position
+            if (location.pathname === "/") {
+                // Check if at bottom of page - highlight contact
+                const isAtBottom = window.innerHeight + window.scrollY >= document.body.offsetHeight - 50;
+                if (isAtBottom) {
+                    setActiveSection("contact");
+                    return;
+                }
+
+                const sections = ["contact", "technologies", "projects", "experience", "education", "home"];
+                for (const section of sections) {
+                    const element = document.getElementById(section);
+                    if (element) {
+                        const rect = element.getBoundingClientRect();
+                        if (rect.top <= 100) {
+                            setActiveSection(section);
+                            break;
+                        }
+                    }
+                }
+            }
         };
         window.addEventListener('scroll', handleScroll);
         return () => window.removeEventListener('scroll', handleScroll);
-    }, []);
+    }, [location.pathname]);
 
     const navItems = [
-        { to: "/", label: "Home" },
-        { to: "/education", label: "Education" },
-        { to: "/experience", label: "Experience" },
-        { to: "/technologies", label: "Technologies" },
-        { to: "/contact", label: "Contact" },
-        { to: "/resume", label: "Resume" },
+        { href: "/#home", label: "Home", section: "home" },
+        { href: "/#education", label: "Education", section: "education" },
+        { href: "/#experience", label: "Experience", section: "experience" },
+        { href: "/#projects", label: "Projects", section: "projects" },
+        { href: "/#technologies", label: "Technologies", section: "technologies" },
+        { href: "/#contact", label: "Contact", section: "contact" },
+        { href: "/resume", label: "Resume", section: null, isExternal: true },
     ];
+
+    const handleNavClick = (e, href, section) => {
+        if (section && location.pathname === "/") {
+            e.preventDefault();
+            const element = document.getElementById(section);
+            if (element) {
+                element.scrollIntoView({ behavior: "smooth" });
+                window.history.pushState(null, "", href);
+            }
+        }
+        setIsMobileMenuOpen(false);
+    };
+
+    const isActive = (section) => {
+        if (section === null) {
+            return location.pathname === "/resume";
+        }
+        return location.pathname === "/" && activeSection === section;
+    };
 
     return (
         <header
-            className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-                isScrolled
-                    ? 'bg-white/80 dark:bg-gray-900/80 backdrop-blur-xl shadow-lg'
-                    : 'bg-transparent'
+            className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 bg-white/80 dark:bg-gray-900/80 backdrop-blur-xl ${
+                isScrolled ? 'shadow-lg' : ''
             }`}
         >
             <nav className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div className="flex items-center justify-between h-16 sm:h-20">
-                    {/* Logo/Signature */}
                     <Link
                         to="/"
                         className="flex items-center space-x-2 group"
@@ -74,22 +112,27 @@ export default function Header() {
                     {/* Desktop Navigation */}
                     <div className="hidden md:flex items-center space-x-1 lg:space-x-2">
                         {navItems.map((item) => (
-                            <NavLink
-                                key={item.to}
-                                to={item.to}
-                                className={({ isActive }) =>
-                                    `px-3 lg:px-4 py-2 rounded-full text-sm lg:text-base font-medium transition-all duration-300 ${
-                                        isActive
-                                            ? 'bg-gradient-to-r from-blue-600 to-sky-600 text-white shadow-lg shadow-blue-500/50'
-                                            : 'text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800 hover:text-blue-600 dark:hover:text-blue-400'
-                                    }`
-                                }
+                            <a
+                                key={item.href}
+                                href={item.href}
+                                onClick={(e) => handleNavClick(e, item.href, item.section)}
+                                target={item.isExternal ? "_blank" : undefined}
+                                rel={item.isExternal ? "noopener noreferrer" : undefined}
+                                className={`px-3 lg:px-4 py-2 rounded-full text-sm lg:text-base font-medium transition-all duration-300 inline-flex items-center gap-1.5 ${
+                                    isActive(item.section)
+                                        ? 'bg-gradient-to-r from-blue-600 to-sky-600 text-white shadow-lg shadow-blue-500/50'
+                                        : 'text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800 hover:text-blue-600 dark:hover:text-blue-400'
+                                }`}
                             >
                                 {item.label}
-                            </NavLink>
+                                {item.isExternal && (
+                                    <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                                    </svg>
+                                )}
+                            </a>
                         ))}
 
-                        {/* Dark Mode Toggle */}
                         <button
                             onClick={toggleDarkMode}
                             className="ml-2 lg:ml-4 p-2 rounded-full bg-gray-100 dark:bg-gray-800 hover:bg-gray-200 dark:hover:bg-gray-700 transition-all duration-300 hover:scale-110"
@@ -109,7 +152,6 @@ export default function Header() {
 
                     {/* Mobile Menu Button */}
                     <div className="md:hidden flex items-center space-x-2">
-                        {/* Dark Mode Toggle Mobile */}
                         <button
                             onClick={toggleDarkMode}
                             className="p-2 rounded-full bg-gray-100 dark:bg-gray-800 hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors"
@@ -149,20 +191,25 @@ export default function Header() {
                     <div className="md:hidden py-4 animate-slide-down">
                         <div className="flex flex-col space-y-2">
                             {navItems.map((item) => (
-                                <NavLink
-                                    key={item.to}
-                                    to={item.to}
-                                    onClick={() => setIsMobileMenuOpen(false)}
-                                    className={({ isActive }) =>
-                                        `px-4 py-2 rounded-lg text-base font-medium transition-colors ${
-                                            isActive
-                                                ? 'bg-gradient-to-r from-blue-600 to-sky-600 text-white'
-                                                : 'text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800'
-                                        }`
-                                    }
+                                <a
+                                    key={item.href}
+                                    href={item.href}
+                                    onClick={(e) => handleNavClick(e, item.href, item.section)}
+                                    target={item.isExternal ? "_blank" : undefined}
+                                    rel={item.isExternal ? "noopener noreferrer" : undefined}
+                                    className={`px-4 py-2 rounded-lg text-base font-medium transition-colors inline-flex items-center gap-1.5 ${
+                                        isActive(item.section)
+                                            ? 'bg-gradient-to-r from-blue-600 to-sky-600 text-white'
+                                            : 'text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800'
+                                    }`}
                                 >
                                     {item.label}
-                                </NavLink>
+                                    {item.isExternal && (
+                                        <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                                        </svg>
+                                    )}
+                                </a>
                             ))}
                         </div>
                     </div>

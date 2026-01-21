@@ -101,14 +101,14 @@ const colorClasses = {
     },
 };
 
-export default function Technologies() {
+export default function TechnologiesSection() {
     return (
-        <main className="min-h-screen pt-24 pb-16">
+        <section id="technologies" className="py-20">
             <div className="section-container">
                 <div className="mb-12">
-                    <h1 className="text-4xl sm:text-5xl font-bold text-gray-900 dark:text-white mb-4">
+                    <h2 className="text-4xl sm:text-5xl font-bold text-gray-900 dark:text-white mb-4">
                         Tech <span className="gradient-text">Stack</span>
-                    </h1>
+                    </h2>
                     <p className="text-lg text-gray-600 dark:text-gray-400">
                         Technologies and tools I work with
                     </p>
@@ -118,8 +118,7 @@ export default function Technologies() {
                     {stacks.map((stack, idx) => (
                         <div
                             key={stack.title}
-                            className="glass-card p-6 group animate-slide-up"
-                            style={{ animationDelay: `${idx * 0.1}s` }}
+                            className="glass-card p-6 group"
                         >
                             <div className="flex items-center space-x-3 mb-4">
                                 <div
@@ -151,6 +150,6 @@ export default function Technologies() {
                     ))}
                 </div>
             </div>
-        </main>
+        </section>
     );
 }

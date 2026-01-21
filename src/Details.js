@@ -4,7 +4,8 @@ import epicLogo from "/src/assets/logos/epic.png";
 import greensandLogo from "/src/assets/logos/greensand.png";
 import brownLogo from "/src/assets/logos/brown.png";
 import uwmadisonLogo from "/src/assets/logos/uwmadison.png";
-import latestResume from "/src/assets/Peiyuan Li Resume 26NG.pdf"
+import latestResume from "/src/assets/Peiyuan Li Resume 26NG.pdf";
+import ailearningImg from "/src/assets/projects/ailearning.png";
 
 export const personalDetails = {
     name: "Peiyuan Li",
@@ -70,5 +71,17 @@ export const educations = [
         location: "Madison, Wisconsin",
         period: "Sep 2020 – May 2024",
         badge: "Bachelor of Science",
+    },
+];
+
+export const projects = [
+    {
+        title: "AI Learning Platform",
+        description: "Interactive AI/ML learning platform with comprehensive educational content including hands-on projects, concept notebooks, interview questions, and practice quizzes.",
+        url: "https://ai-learning-pink.vercel.app/",
+        image: ailearningImg,
+        techStack: ["Next.js 15", "TypeScript", "Tailwind CSS", "Radix UI", "Laravel"],
+        category: "Education Platform",
+        status: "Live",
     },
 ];
