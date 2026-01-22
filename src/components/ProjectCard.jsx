@@ -11,13 +11,13 @@ export default function ProjectCard({
         <div className="glass-card overflow-hidden group h-full flex flex-col">
             {/* Project Image */}
             {image && (
-                <div className="relative aspect-video overflow-hidden">
+                <div className="relative aspect-video overflow-hidden bg-gradient-to-br from-blue-50 to-sky-100 dark:from-slate-800 dark:to-slate-900">
                     <img
                         src={image}
                         alt={title}
-                        className="w-full h-full object-cover object-top transition-transform duration-500 group-hover:scale-105"
+                        className="w-full h-full object-contain transition-transform duration-500 group-hover:scale-105"
                     />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/30 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                 </div>
             )}
 
@@ -45,7 +45,7 @@ export default function ProjectCard({
                 </p>
 
                 {/* Tech Stack */}
-                <div className="flex flex-wrap gap-1.5 mb-6 flex-grow">
+                <div className="flex flex-wrap gap-1.5 mb-4 content-start">
                     {techStack.map((tech) => (
                         <span
                             key={tech}
@@ -55,6 +55,9 @@ export default function ProjectCard({
                         </span>
                     ))}
                 </div>
+
+                {/* Spacer to push button to bottom */}
+                <div className="flex-grow"></div>
 
                 {/* Action Button */}
                 <a
