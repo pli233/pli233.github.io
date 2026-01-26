@@ -61,6 +61,29 @@ export default function Header() {
         return () => window.removeEventListener('scroll', handleScroll);
     }, [location.pathname]);
 
+    // 处理初始加载和路由变化时的 hash 导航
+    useEffect(() => {
+        const hash = location.hash;
+        if (hash && location.pathname === "/") {
+            const sectionId = hash.replace("#", "");
+            let attempts = 0;
+            const maxAttempts = 50; // 约 50 frames ≈ 800ms at 60fps
+
+            const scrollToSection = () => {
+                const element = document.getElementById(sectionId);
+                if (element) {
+                    element.scrollIntoView({ behavior: "smooth" });
+                    setActiveSection(sectionId);
+                } else if (attempts < maxAttempts) {
+                    attempts++;
+                    requestAnimationFrame(scrollToSection);
+                }
+            };
+
+            requestAnimationFrame(scrollToSection);
+        }
+    }, [location]);
+
     const navItems = [
         { href: "/#home", label: "Home", section: "home" },
         { href: "/#education", label: "Education", section: "education" },
@@ -72,13 +95,17 @@ export default function Header() {
     ];
 
     const handleNavClick = (e, href, section) => {
-        if (section && location.pathname === "/") {
-            e.preventDefault();
-            const element = document.getElementById(section);
-            if (element) {
-                element.scrollIntoView({ behavior: "smooth" });
-                window.history.pushState(null, "", href);
+        if (section) {
+            if (location.pathname === "/") {
+                // 当前已在首页，直接滚动
+                e.preventDefault();
+                const element = document.getElementById(section);
+                if (element) {
+                    element.scrollIntoView({ behavior: "smooth" });
+                    window.history.pushState(null, "", href);
+                }
             }
+            // 如果在其他页面，让默认导航行为执行，useEffect 会处理滚动
         }
         setIsMobileMenuOpen(false);
     };
