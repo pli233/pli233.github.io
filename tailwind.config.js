@@ -1,5 +1,5 @@
 /** @type {import('tailwindcss').Config} */
-// Obsidian Gold theme
+// Google-inspired white theme
 export default {
   content: [
     "./index.html",
@@ -10,18 +10,18 @@ export default {
     extend: {
       colors: {
         scandi: {
-          bg: '#FAF8F5',
+          bg: '#FFFFFF',
           card: '#FFFFFF',
-          surface: '#F5F3EF',
-          muted: '#F0EDE8',
-          border: '#E8E4DF',
-          'border-subtle': '#F0EDE8',
-          charcoal: '#1A1A2E',
-          sage: '#C9883C',
-          'sage-tint': 'rgba(201, 136, 60, 0.08)',
-          'text-body': '#5A5A5A',
-          'text-secondary': '#8A8A8A',
-          'text-muted': '#ADADAD',
+          surface: '#F8FAFF',
+          muted: '#EEF4FF',
+          border: '#DFE7F5',
+          'border-subtle': '#EDF2FA',
+          charcoal: '#202124',
+          sage: '#1A73E8',
+          'sage-tint': 'rgba(26, 115, 232, 0.10)',
+          'text-body': '#3C4043',
+          'text-secondary': '#5F6368',
+          'text-muted': '#9AA0A6',
         },
         primary: {
           50: '#eff6ff',
