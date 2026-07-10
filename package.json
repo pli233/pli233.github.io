@@ -13,6 +13,7 @@
     "deploy": "gh-pages -d dist --repo=https://github.com/pli233/pli233.github.io.git"
   },
   "dependencies": {
+    "gsap": "^3.15.0",
     "react": "^19.1.1",
     "react-dom": "^19.1.1",
     "react-router-dom": "^7.9.3"

@@ -1,87 +1,85 @@
-export default function ProjectCard({
-    title,
-    description,
-    url,
-    image,
-    techStack,
-    category,
-    status,
-}) {
+import StatusBadge from "./StatusBadge";
+
+function ArrowUpRightIcon() {
     return (
-        <div className="glass-card overflow-hidden group h-full flex flex-col">
-            {/* Project Image */}
-            {image && (
-                <div className="relative aspect-video overflow-hidden bg-gradient-to-br from-blue-50 to-sky-100 dark:from-slate-800 dark:to-slate-900">
-                    <img
-                        src={image}
-                        alt={title}
-                        className="w-full h-full object-contain transition-transform duration-500 group-hover:scale-105"
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/30 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-                </div>
-            )}
+        <svg className="h-4 w-4" fill="none" stroke="currentColor" strokeWidth={2.25} viewBox="0 0 24 24" aria-hidden="true">
+            <path strokeLinecap="round" strokeLinejoin="round" d="M7 17L17 7M17 7H8M17 7v9" />
+        </svg>
+    );
+}
 
-            <div className="p-6 flex flex-col flex-grow">
-                {/* Header */}
-                <div className="flex items-start justify-between mb-3">
-                    <div>
-                        <span className="text-xs font-semibold uppercase tracking-wider text-blue-600 dark:text-blue-400">
-                            {category}
-                        </span>
-                        <h3 className="text-xl font-bold text-gray-900 dark:text-white mt-1 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">
-                            {title}
-                        </h3>
-                    </div>
-                    {status && (
-                        <span className="px-2.5 py-1 rounded-full text-xs font-semibold bg-green-100 dark:bg-green-900/30 text-green-700 dark:text-green-400 border border-green-200 dark:border-green-800 flex-shrink-0">
-                            {status}
-                        </span>
-                    )}
-                </div>
+export default function ProjectCard({ project, index = 0 }) {
+    const flip = index % 2 === 1;
+    const layoutClass = flip ? "lg:grid-cols-[0.92fr_1.08fr]" : "lg:grid-cols-[1.08fr_0.92fr]";
 
-                {/* Description */}
-                <p className="text-gray-600 dark:text-gray-400 text-sm mb-4 line-clamp-2">
-                    {description}
-                </p>
-
-                {/* Tech Stack */}
-                <div className="flex flex-wrap gap-1.5 mb-4 content-start">
-                    {techStack.map((tech) => (
-                        <span
-                            key={tech}
-                            className="px-2 py-0.5 rounded-md text-xs font-medium bg-blue-50 dark:bg-blue-900/30 text-blue-700 dark:text-blue-300 border border-blue-200 dark:border-blue-800"
-                        >
-                            {tech}
-                        </span>
-                    ))}
-                </div>
-
-                {/* Spacer to push button to bottom */}
-                <div className="flex-grow"></div>
-
-                {/* Action Button */}
+    return (
+        <article className="scandi-card project-showcase overflow-hidden">
+            <div className={`grid ${layoutClass}`}>
                 <a
-                    href={url}
+                    href={project.url}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="btn-gradient inline-flex items-center justify-center space-x-2 w-full text-center"
+                    className={`project-media group min-h-[300px] sm:min-h-[380px] ${project.visualClass || "bg-scandi-surface"} ${flip ? "lg:order-2" : ""}`}
+                    aria-label={`Open ${project.title}`}
                 >
-                    <span>View Project</span>
-                    <svg
-                        className="w-4 h-4"
-                        fill="none"
-                        stroke="currentColor"
-                        viewBox="0 0 24 24"
-                    >
-                        <path
-                            strokeLinecap="round"
-                            strokeLinejoin="round"
-                            strokeWidth={2}
-                            d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"
-                        />
-                    </svg>
+                    <img
+                        src={project.image}
+                        alt={`${project.title} product screenshot`}
+                        className={`image-reveal h-full w-full ${project.imageClass || "object-cover"}`}
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-scandi-charcoal/60 via-transparent to-transparent opacity-60 transition-opacity duration-500 group-hover:opacity-80" />
+                    <div className="absolute bottom-5 left-5 right-5 flex items-end justify-between gap-4">
+                        <span className="rounded-full border border-white/30 bg-white/85 px-3 py-1 text-xs font-semibold text-scandi-charcoal backdrop-blur-md">
+                            {project.category}
+                        </span>
+                        <span className="inline-flex h-11 w-11 items-center justify-center rounded-full border border-white/35 bg-white/85 text-scandi-charcoal shadow-lg backdrop-blur-md transition duration-300 group-hover:-translate-y-1 group-hover:scale-105">
+                            <ArrowUpRightIcon />
+                        </span>
+                    </div>
                 </a>
+
+                <div className="flex flex-col justify-between p-6 sm:p-8 lg:p-10">
+                    <div>
+                        <div className="flex flex-wrap items-center gap-2">
+                            {project.status && <StatusBadge>{project.status}</StatusBadge>}
+                            {project.role && (
+                                <span className="scandi-pill">{project.role}</span>
+                            )}
+                        </div>
+
+                        <h3 className="mt-8 max-w-xl font-serif text-4xl leading-none tracking-tight text-scandi-charcoal sm:text-5xl">
+                            {project.title}
+                        </h3>
+                        <p className="mt-5 max-w-2xl text-sm leading-7 text-scandi-text-body sm:text-[15px]">
+                            {project.description}
+                        </p>
+                        {project.impact && (
+                            <p className="mt-5 border-l border-scandi-sage/50 pl-4 text-sm leading-7 text-scandi-text-secondary">
+                                {project.impact}
+                            </p>
+                        )}
+
+                        {project.highlights?.length > 0 && (
+                            <div className="mt-8 grid gap-2">
+                                {project.highlights.map((highlight) => (
+                                    <div key={highlight} className="flex items-center gap-3 text-sm text-scandi-text-body">
+                                        <span className="h-1.5 w-1.5 rounded-full bg-scandi-sage" aria-hidden="true" />
+                                        <span>{highlight}</span>
+                                    </div>
+                                ))}
+                            </div>
+                        )}
+                    </div>
+
+                    <div className="mt-10 flex flex-wrap gap-2">
+                        {project.techStack.map((tech) => (
+                            <span key={tech} className="scandi-pill">
+                                {tech}
+                            </span>
+                        ))}
+                    </div>
+                </div>
             </div>
-        </div>
+        </article>
     );
 }

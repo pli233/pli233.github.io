@@ -1,5 +1,6 @@
 import { educations } from "../Details";
-import { RevealOnScroll } from "../hooks/useScrollReveal";
+import RevealOnScroll from "../components/RevealOnScroll";
+import StatusBadge from "../components/StatusBadge";
 
 export default function EducationSection() {
     return (
@@ -15,7 +16,15 @@ export default function EducationSection() {
                 <div className="flex flex-col gap-5">
                     {educations.map((edu, i) => (
                         <RevealOnScroll key={edu.school} delay={i * 100}>
-                            <div className="scandi-card p-7 flex flex-col sm:flex-row items-start gap-6">
+                            <div className="scandi-card relative p-7 flex flex-col sm:flex-row items-start gap-6">
+                                <span className="absolute right-7 top-7 flex max-w-[46%] items-center justify-end gap-1.5 text-right text-xs text-scandi-text-secondary">
+                                    <svg className="h-3.5 w-3.5 flex-shrink-0" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24">
+                                        <path strokeLinecap="round" strokeLinejoin="round" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                                        <path strokeLinecap="round" strokeLinejoin="round" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+                                    </svg>
+                                    <span>{edu.location}</span>
+                                </span>
+
                                 {/* Logo */}
                                 <div className="flex-shrink-0">
                                     {edu.logo ? (
@@ -31,7 +40,7 @@ export default function EducationSection() {
 
                                 {/* Content */}
                                 <div className="flex-1 min-w-0">
-                                    <h3 className="text-base font-semibold text-scandi-charcoal leading-snug">
+                                    <h3 className="text-base font-semibold text-scandi-charcoal leading-snug sm:pr-44">
                                         {edu.school}
                                     </h3>
                                     <p className="text-sm text-scandi-text-body mt-1.5">
@@ -44,16 +53,9 @@ export default function EducationSection() {
                                             </svg>
                                             {edu.period}
                                         </span>
-                                        <span className="flex items-center gap-1.5 text-scandi-text-secondary text-xs">
-                                            <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24">
-                                                <path strokeLinecap="round" strokeLinejoin="round" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
-                                                <path strokeLinecap="round" strokeLinejoin="round" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
-                                            </svg>
-                                            {edu.location}
-                                        </span>
-                                        <span className="px-2.5 py-0.5 rounded-full text-xs font-medium bg-scandi-sage/10 text-scandi-sage border border-scandi-sage/20">
-                                            {edu.badge.includes("Master") ? "Masters" : "Bachelors"}
-                                        </span>
+                                        <StatusBadge className="sm:ml-auto">
+                                            {edu.badge.includes("Master") ? "Master's" : "Bachelor's"}
+                                        </StatusBadge>
                                     </div>
                                 </div>
                             </div>
