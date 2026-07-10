@@ -129,7 +129,7 @@ export default function Header() {
                                     : 'text-scandi-text-secondary hover:bg-scandi-surface hover:text-scandi-charcoal'
                             }`}
                         >
-                            <GoogleTechIcon name="resume" className="h-4 w-4" />
+                            <GoogleTechIcon name="resume" className="h-6 w-6" />
                             Resume
                         </Link>
 

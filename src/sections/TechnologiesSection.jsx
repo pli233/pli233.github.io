@@ -57,8 +57,8 @@ export default function TechnologiesSection() {
                             <div className="scandi-card p-6 h-full">
                                 {/* Header */}
                                 <div className="flex items-center gap-3 mb-4">
-                                    <div className="flex h-10 w-10 items-center justify-center rounded-2xl border border-[#DDE8FC] bg-white shadow-sm shadow-black/[0.03]">
-                                        <GoogleTechIcon name={stack.icon} className="h-5 w-5" />
+                                    <div className="flex h-12 w-12 items-center justify-center rounded-[20px] border border-[#DDE8FC] bg-white shadow-sm shadow-black/[0.03]">
+                                        <GoogleTechIcon name={stack.icon} className="h-9 w-9" />
                                     </div>
                                     <div>
                                         <h3 className="text-sm font-semibold text-scandi-charcoal">{stack.title}</h3>

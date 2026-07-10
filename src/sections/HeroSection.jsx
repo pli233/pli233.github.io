@@ -54,11 +54,11 @@ export default function HeroSection() {
                         {/* Buttons */}
                         <div className="flex items-center gap-3 pt-3">
                             <a href="#contact" className="btn-primary">
-                                <GoogleTechIcon name="contact" className="h-4 w-4" />
+                                <GoogleTechIcon name="contact" className="h-6 w-6" />
                                 <span>Contact Me</span>
                             </a>
                             <a href="/resume" className="btn-outline">
-                                <GoogleTechIcon name="resume" className="h-4 w-4" />
+                                <GoogleTechIcon name="resume" className="h-6 w-6" />
                                 <span>View Resume</span>
                             </a>
                         </div>
@@ -72,7 +72,7 @@ export default function HeroSection() {
                                 className="flex h-11 w-11 cursor-pointer items-center justify-center rounded-2xl border border-[#DDE8FC] bg-white shadow-sm shadow-black/[0.03] transition-all duration-200 hover:-translate-y-0.5 hover:border-[#4285F4]/40 hover:shadow-md hover:shadow-[#4285F4]/10"
                                 aria-label="LinkedIn"
                             >
-                                <GoogleTechIcon name="linkedin" className="h-5 w-5" />
+                                <GoogleTechIcon name="linkedin" className="h-8 w-8" />
                             </a>
                             <a
                                 href={socialMediaUrl.github}
@@ -81,14 +81,14 @@ export default function HeroSection() {
                                 className="flex h-11 w-11 cursor-pointer items-center justify-center rounded-2xl border border-[#DDE8FC] bg-white shadow-sm shadow-black/[0.03] transition-all duration-200 hover:-translate-y-0.5 hover:border-[#4285F4]/40 hover:shadow-md hover:shadow-[#4285F4]/10"
                                 aria-label="GitHub"
                             >
-                                <GoogleTechIcon name="github" className="h-5 w-5" />
+                                <GoogleTechIcon name="github" className="h-8 w-8" />
                             </a>
                             <a
                                 href={socialMediaUrl.email}
                                 className="flex h-11 w-11 cursor-pointer items-center justify-center rounded-2xl border border-[#DDE8FC] bg-white shadow-sm shadow-black/[0.03] transition-all duration-200 hover:-translate-y-0.5 hover:border-[#4285F4]/40 hover:shadow-md hover:shadow-[#4285F4]/10"
                                 aria-label="Email"
                             >
-                                <GoogleTechIcon name="email" className="h-5 w-5" />
+                                <GoogleTechIcon name="email" className="h-8 w-8" />
                             </a>
                         </div>
                     </div>

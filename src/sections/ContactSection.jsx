@@ -31,8 +31,8 @@ export default function ContactSection() {
                     {/* Email */}
                     <RevealOnScroll delay={0}>
                         <div className="scandi-card p-7 flex flex-col items-center text-center gap-4 h-full">
-                            <div className="flex h-14 w-14 items-center justify-center rounded-[22px] border border-[#DDE8FC] bg-white shadow-sm shadow-black/[0.03]">
-                                <GoogleTechIcon name="email" className="h-7 w-7" />
+                            <div className="flex h-16 w-16 items-center justify-center rounded-[24px] border border-[#DDE8FC] bg-white shadow-sm shadow-black/[0.03]">
+                                <GoogleTechIcon name="email" className="h-12 w-12" />
                             </div>
                             <h3 className="text-base font-semibold text-scandi-charcoal">Email</h3>
                             <p className="text-scandi-text-secondary text-[13px]">{emailAddr}</p>
@@ -40,7 +40,7 @@ export default function ContactSection() {
                                 onClick={copyEmail}
                                 className="btn-primary text-xs mt-auto"
                             >
-                                <GoogleTechIcon name={copied ? "check" : "copy"} className="h-3.5 w-3.5" />
+                                <GoogleTechIcon name={copied ? "check" : "copy"} className="h-5 w-5" />
                                 <span>{copied ? "Copied!" : "Copy Address"}</span>
                             </button>
                         </div>
@@ -49,8 +49,8 @@ export default function ContactSection() {
                     {/* LinkedIn */}
                     <RevealOnScroll delay={120}>
                         <div className="scandi-card p-7 flex flex-col items-center text-center gap-4 h-full">
-                            <div className="flex h-14 w-14 items-center justify-center rounded-[22px] border border-[#DDE8FC] bg-white shadow-sm shadow-black/[0.03]">
-                                <GoogleTechIcon name="linkedin" className="h-7 w-7" />
+                            <div className="flex h-16 w-16 items-center justify-center rounded-[24px] border border-[#DDE8FC] bg-white shadow-sm shadow-black/[0.03]">
+                                <GoogleTechIcon name="linkedin" className="h-12 w-12" />
                             </div>
                             <h3 className="text-base font-semibold text-scandi-charcoal">LinkedIn</h3>
                             <p className="text-scandi-text-secondary text-[13px]">Connect with me professionally</p>
@@ -60,7 +60,7 @@ export default function ContactSection() {
                                 rel="noopener noreferrer"
                                 className="btn-outline text-xs mt-auto"
                             >
-                                <GoogleTechIcon name="external" className="h-3.5 w-3.5" />
+                                <GoogleTechIcon name="linkedin" className="h-5 w-5" />
                                 <span>Visit Profile</span>
                             </a>
                         </div>
@@ -69,8 +69,8 @@ export default function ContactSection() {
                     {/* GitHub */}
                     <RevealOnScroll delay={240}>
                         <div className="scandi-card p-7 flex flex-col items-center text-center gap-4 h-full">
-                            <div className="flex h-14 w-14 items-center justify-center rounded-[22px] border border-[#DDE8FC] bg-white shadow-sm shadow-black/[0.03]">
-                                <GoogleTechIcon name="github" className="h-7 w-7" />
+                            <div className="flex h-16 w-16 items-center justify-center rounded-[24px] border border-[#DDE8FC] bg-white shadow-sm shadow-black/[0.03]">
+                                <GoogleTechIcon name="github" className="h-12 w-12" />
                             </div>
                             <h3 className="text-base font-semibold text-scandi-charcoal">GitHub</h3>
                             <p className="text-scandi-text-secondary text-[13px]">Check out my open source work</p>
@@ -80,7 +80,7 @@ export default function ContactSection() {
                                 rel="noopener noreferrer"
                                 className="btn-outline text-xs mt-auto"
                             >
-                                <GoogleTechIcon name="external" className="h-3.5 w-3.5" />
+                                <GoogleTechIcon name="github" className="h-5 w-5" />
                                 <span>Visit Profile</span>
                             </a>
                         </div>
