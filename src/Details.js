@@ -15,7 +15,7 @@ export const personalDetails = {
     name: "Peiyuan Li",
     tagline: "Software Developer · AI Enthusiast",
     img: me, // 你可以把头像放到 public/me.jpg，然后这里写 "/me.jpg"
-    about: `I’m a Software Engineer at Google working on Google Ads. My work sits at the intersection of product engineering, reliable systems, and applied AI, shaped by prior experience across agentic AI at GreenSand AI, AI infrastructure at Huawei, and healthcare product development at Epic. I care about building software that is clear, scalable, and useful in real user workflows.`,
+    about: `I'm a Software Engineer at Google working on Google Ads, where my work sits at the intersection of product engineering, systems reliability, and applied AI. I hold a Master's from Brown and have prior experience across agentic AI, AI infrastructure, and healthcare product development. I care about building software that's clear, scalable, and genuinely useful in real user workflows.`,
 };
 
 export const socialMediaUrl = {
@@ -33,6 +33,13 @@ export const experienc = [
         location: "Mountain View, California",
         period: "Jul 2026 – Now",
         badge: "Full-time",
+        details: {
+            summary: "Google Ads product engineering.",
+            bullets: [
+                "Contributing to Google Ads.",
+            ],
+            technologies: ["Google Ads", "Software Engineering"],
+        },
     },
     {
         title: "Software Engineer Intern (Agentic AI)",
@@ -41,6 +48,15 @@ export const experienc = [
         location: "Remote",
         period: "Nov 2025 – Feb 2026",
         badge: "Internship",
+        details: {
+            summary: "Agent workflows, product architecture, and AI tooling.",
+            bullets: [
+                "Orchestrated the core ingestion infrastructure on GCP with TypeScript and MinerU, building a robust pipeline that parses complex PDF layouts into clean markdown, which enabled downstream LLM analysis of legal contracts.",
+                "Engineered a Hybrid RAG system (Vector + Keyword) for indexing 800+ legal statutes and internal playbooks; optimized retrieval precision by enforcing citation-backed generation, reducing unverified claims by ~12% in internal benchmarks.",
+                "Developed a multi-step reasoning agent that automates contract auditing, reducing average review time per document from 45 mins to 6 mins (87% reduction) by providing pre-generated citations for human auditors.",
+            ],
+            technologies: ["GCP", "TypeScript", "MinerU", "Hybrid RAG", "Agentic AI"],
+        },
     },
     {
         title: "Software Engineer Intern (AI Infrastructure)",
@@ -49,6 +65,14 @@ export const experienc = [
         location: "Shenzhen, China",
         period: "Jul 2025 – Sep 2025",
         badge: "Internship",
+        details: {
+            summary: "Infrastructure orchestration and reliable platform services.",
+            bullets: [
+                "Implemented the DMA subsystem for the Unified Bus protocol by engineering a high-throughput receive-queue mechanism, improving data transfer rates by 20% in staging benchmarks and validating scalability for AI training clusters with 900+ nodes.",
+                "Revamped the distributed integration testing framework for mission-critical firmware; increased critical-path code coverage from 93% to 98.9% by removing 40% of redundant mocks, reducing regression defect rates by ~30%.",
+            ],
+            technologies: ["Unified Bus", "DMA", "Distributed Systems", "Integration Testing"],
+        },
     },
     {
         title: "Software Engineer Co-op",
@@ -57,6 +81,14 @@ export const experienc = [
         location: "Madison, Wisconsin",
         period: "Feb 2024 – May 2024",
         badge: "Internship",
+        details: {
+            summary: "Applied AI product work in a healthcare engineering context.",
+            bullets: [
+                "Prototyped a Medical Simplification Service for the MyChart backend, utilizing RAG to map complex clinical standards (SNOMED CT / ICD-10) and dense clinical narratives to patient-friendly explanations, enabling successful internal pilot testing of the new workflow.",
+                "Validated the pipeline via controlled user studies, demonstrating a 12% increase in comprehension scores and a projected 20% reduction in support resolution time by isolating and rewriting high-frequency jargon.",
+            ],
+            technologies: ["MyChart", "RAG", "SNOMED CT", "ICD-10", "User Studies"],
+        },
     },
 ];
 

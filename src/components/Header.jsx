@@ -88,7 +88,7 @@ export default function Header() {
             className="pointer-events-none fixed left-0 right-0 top-3 z-50 px-4 sm:px-6"
         >
             <nav
-                className={`pointer-events-auto mx-auto w-[88vw] max-w-[1080px] rounded-full border border-scandi-border/80 bg-scandi-bg/85 px-4 shadow-sm shadow-black/[0.04] backdrop-blur-xl transition-all duration-300 sm:px-6 lg:px-8 ${
+                className={`pointer-events-auto mx-auto w-fit max-w-[calc(100vw-2rem)] rounded-full border border-scandi-border/80 bg-scandi-bg/85 px-4 shadow-sm shadow-black/[0.04] backdrop-blur-xl transition-all duration-300 sm:px-6 lg:px-8 ${
                     isScrolled ? 'bg-scandi-bg/92 shadow-lg shadow-black/[0.07]' : ''
                 }`}
             >
@@ -115,6 +115,17 @@ export default function Header() {
                                     {item.label}
                                 </a>
                             ))}
+                            <Link
+                                to="/resume"
+                                className={`inline-flex items-center gap-1.5 rounded-full px-3 py-2 text-sm font-medium transition-colors duration-200 ${
+                                    isActive(null)
+                                        ? 'bg-scandi-surface text-scandi-charcoal'
+                                        : 'text-scandi-text-secondary hover:bg-scandi-surface hover:text-scandi-charcoal'
+                                }`}
+                            >
+                                <GoogleTechIcon name="resume" className="h-6 w-6" />
+                                Resume
+                            </Link>
                         </div>
                     </div>
 
@@ -123,7 +134,7 @@ export default function Header() {
                         {/* Resume Link */}
                         <Link
                             to="/resume"
-                            className={`hidden items-center gap-1.5 rounded-full px-3 py-2 text-sm font-medium transition-colors duration-200 sm:inline-flex ${
+                            className={`hidden items-center gap-1.5 rounded-full px-3 py-2 text-sm font-medium transition-colors duration-200 sm:inline-flex lg:hidden ${
                                 isActive(null)
                                     ? 'bg-scandi-surface text-scandi-charcoal'
                                     : 'text-scandi-text-secondary hover:bg-scandi-surface hover:text-scandi-charcoal'

@@ -28,7 +28,7 @@ export default function EducationSection() {
                                 {/* Logo */}
                                 <div className="flex-shrink-0">
                                     {edu.logo ? (
-                                        <div className="w-[72px] h-[72px] rounded-2xl bg-white border border-scandi-border p-3 flex items-center justify-center">
+                                        <div className="w-[72px] h-[72px] p-2 flex items-center justify-center">
                                             <img src={edu.logo} alt={edu.school} className="w-full h-full object-contain" />
                                         </div>
                                     ) : (

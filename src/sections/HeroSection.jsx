@@ -53,7 +53,7 @@ export default function HeroSection() {
 
                         {/* Buttons */}
                         <div className="flex items-center gap-3 pt-3">
-                            <a href="#contact" className="btn-primary">
+                            <a href="#contact" className="btn-contact">
                                 <GoogleTechIcon name="contact" className="h-6 w-6" />
                                 <span>Contact Me</span>
                             </a>

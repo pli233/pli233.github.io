@@ -1,22 +1,22 @@
 import {
-    MdArticle,
     MdAutoAwesome,
     MdChatBubble,
     MdCheckCircle,
     MdCode,
     MdContentCopy,
     MdDesignServices,
-    MdEmail,
     MdStorage,
     MdSync,
     MdViewModule,
 } from "react-icons/md";
 import { FaGithub, FaLinkedin } from "react-icons/fa6";
+import gmailLogo from "../assets/logos/gmail.svg";
+import resumeIcon from "../assets/icons/resume-3d.png";
 
 const iconMap = {
-    resume: { icon: MdArticle, tone: "blue" },
+    resume: { image: resumeIcon, tone: "blue", brand: true },
     contact: { icon: MdChatBubble, tone: "blue" },
-    email: { icon: MdEmail, tone: "red" },
+    email: { image: gmailLogo, tone: "gmail", brand: true },
     linkedin: { icon: FaLinkedin, tone: "linkedin", brand: true },
     github: { icon: FaGithub, tone: "github", brand: true },
     repository: { icon: MdCode, tone: "gray" },
@@ -76,6 +76,10 @@ const toneStyles = {
         color: "#181717",
         "--icon-color": "#181717",
     },
+    gmail: {
+        color: "#ea4335",
+        "--icon-color": "#ea4335",
+    },
 };
 
 function classNames(...values) {
@@ -90,6 +94,22 @@ function IconShell({ config, name, className = "h-5 w-5", title }) {
         : { "aria-hidden": true };
 
     if (config.brand) {
+        if (config.image) {
+            return (
+                <img
+                    src={config.image}
+                    alt={title || ""}
+                    className={classNames(
+                        "google-tech-icon google-tech-icon-brand",
+                        className,
+                    )}
+                    data-google-tech-icon={name}
+                    data-icon-tone={config.tone}
+                    {...(title ? {} : { "aria-hidden": true })}
+                />
+            );
+        }
+
         return (
             <Icon
                 className={classNames(
