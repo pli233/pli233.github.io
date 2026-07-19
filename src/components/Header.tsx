@@ -112,6 +112,8 @@ export default function Header() {
             }}
             isExpanded={isRailExpanded}
             onToggle={handleToggleRail}
+            showSectionRail={location.pathname === "/"}
+            isResumePage={location.pathname === "/resume"}
         />
     );
 }
