@@ -35,7 +35,7 @@ export default function Resume() {
                             Back to portfolio
                         </Link>
 
-                        <h1 className="mt-5 max-w-[520px]">
+                        <h1 className="mt-5 w-full sm:w-64">
                             <Link
                                 to="/"
                                 aria-label="Resume — back to portfolio"
