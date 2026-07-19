@@ -1,5 +1,6 @@
-import { useEffect, useRef, useState } from "react";
+import { useRef } from "react";
 import type { Project } from "../types/portfolio";
+import { useMediaQuery } from "../hooks/useMediaQuery";
 import CardSwap, { Card, type CardSwapHandle } from "./CardSwap";
 import StatusBadge from "./StatusBadge";
 
@@ -20,24 +21,8 @@ function ChevronIcon({ direction }: { readonly direction: "left" | "right" }) {
     );
 }
 
-function useCompactSwap() {
-    const [compact, setCompact] = useState(false);
-
-    useEffect(() => {
-        const media = window.matchMedia("(max-width: 767px)");
-        const sync = () => setCompact(media.matches);
-
-        sync();
-        media.addEventListener("change", sync);
-
-        return () => media.removeEventListener("change", sync);
-    }, []);
-
-    return compact;
-}
-
 export default function ProjectCardSwap({ projects }: { readonly projects: readonly Project[] }) {
-    const compact = useCompactSwap();
+    const compact = useMediaQuery("(max-width: 767px)");
     const cardSwapRef = useRef<CardSwapHandle>(null);
 
     return (
@@ -68,6 +53,8 @@ export default function ProjectCardSwap({ projects }: { readonly projects: reado
                                 <img
                                     src={project.image}
                                     alt={`${project.title} project preview`}
+                                    loading="lazy"
+                                    decoding="async"
                                     className={`relative h-full w-full transition duration-700 group-hover:scale-[1.035] ${project.imageClass || "object-cover"}`}
                                 />
                                 <div className="absolute right-4 top-4 z-20 inline-flex translate-z-px transform-gpu items-center gap-1.5 rounded-full border border-scandi-border bg-white px-3.5 py-2 text-sm font-semibold leading-none text-scandi-charcoal antialiased shadow-[0_8px_24px_rgba(26,26,46,0.12)] [backface-visibility:hidden]">

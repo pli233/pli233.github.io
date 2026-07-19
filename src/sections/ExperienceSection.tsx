@@ -57,7 +57,13 @@ export default function ExperienceSection() {
                                                 colors={["#c084fc", "#f472b6", "#38bdf8"]}
                                             >
                                                 <div className="flex h-[72px] w-[72px] items-center justify-center rounded-[18px] bg-white p-2">
-                                                    <img src={job.logo} alt={job.company} className="h-full w-full object-contain" />
+                                                    <img
+                                                        src={job.logo}
+                                                        alt={job.company}
+                                                        loading="lazy"
+                                                        decoding="async"
+                                                        className="h-full w-full object-contain"
+                                                    />
                                                 </div>
                                             </BorderGlow>
                                         ) : (

@@ -3,6 +3,14 @@ import { useScrollReveal } from "../hooks/useScrollReveal";
 
 type RevealDirection = "up" | "down" | "left" | "right" | "none";
 
+const directionStyles: Record<RevealDirection, string> = {
+    up: "translate-y-8",
+    down: "-translate-y-8",
+    left: "translate-x-8",
+    right: "-translate-x-8",
+    none: "",
+};
+
 interface RevealOnScrollProps {
     readonly children: ReactNode;
     readonly className?: string;
@@ -12,14 +20,6 @@ interface RevealOnScrollProps {
 
 export default function RevealOnScroll({ children, className = "", delay = 0, direction = "up" }: RevealOnScrollProps) {
     const { ref, isVisible } = useScrollReveal();
-
-    const directionStyles: Record<RevealDirection, string> = {
-        up: "translate-y-8",
-        down: "-translate-y-8",
-        left: "translate-x-8",
-        right: "-translate-x-8",
-        none: "",
-    };
 
     return (
         <div

@@ -331,7 +331,7 @@
 
   .line-sidebar-hidden-resting li:hover .line-sidebar-label,
   .line-sidebar-hidden-resting li[data-nearby="true"] .line-sidebar-label,
-  .line-sidebar-hidden-resting li:focus-visible .line-sidebar-label {
+  .line-sidebar-hidden-resting li:focus-within .line-sidebar-label {
     opacity: 1 !important;
     transform: translateX(var(--max-shift)) !important;
     font-size: 0.78rem !important;
@@ -340,8 +340,8 @@
 
   .line-sidebar-hidden-resting li:hover .line-sidebar-marker,
   .line-sidebar-hidden-resting li[data-nearby="true"] .line-sidebar-marker,
-  .line-sidebar-hidden-resting li:focus-visible .line-sidebar-marker,
-  .line-sidebar-hidden-resting li[aria-current="location"] .line-sidebar-marker {
+  .line-sidebar-hidden-resting li:focus-within .line-sidebar-marker,
+  .line-sidebar-hidden-resting li[data-active="true"] .line-sidebar-marker {
     background: var(--accent-color) !important;
     box-shadow: none;
     transform: translateY(-50%) scaleX(1.2) !important;

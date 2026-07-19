@@ -5,7 +5,7 @@ import { cn } from "@/lib/utils";
 type Falloff = "linear" | "smooth" | "sharp";
 
 export interface LineSidebarProps {
-    items?: string[];
+    items?: readonly string[];
     accentColor?: string;
     textColor?: string;
     markerColor?: string;
@@ -49,7 +49,7 @@ const DEFAULT_ITEMS = [
     "Resources",
     "Documentation",
     "Support",
-];
+] as const;
 
 export default function LineSidebar({
     items = DEFAULT_ITEMS,
@@ -216,49 +216,47 @@ export default function LineSidebar({
             >
                 {items.map((label, index) => (
                     <li
-                        key={`${label}-${index}`}
+                        key={label}
                         ref={(element) => {
                             itemRefs.current[index] = element;
                         }}
-                        role="link"
-                        tabIndex={0}
-                        aria-current={activeIndex === index ? "location" : undefined}
-                        onClick={() => handleClick(index, label)}
-                        onKeyDown={(event) => {
-                            if (event.key === "Enter" || event.key === " ") {
-                                event.preventDefault();
-                                handleClick(index, label);
-                            }
-                        }}
-                        className="group relative cursor-pointer py-0 focus-visible:outline-none"
+                        data-active={activeIndex === index ? "true" : undefined}
+                        className="group relative py-0"
                     >
-                        {showMarker && (
-                            <span
-                                aria-hidden="true"
-                                className="line-sidebar-marker absolute top-1/2 block h-[2px] origin-left -translate-y-1/2 rounded-full"
-                                style={{
-                                    left: `calc(-1 * ${markerLength + markerGap}px)`,
-                                    width: `${markerLength}px`,
-                                    backgroundColor: "color-mix(in srgb, var(--accent-color) calc(var(--effect, 0) * 100%), var(--marker-color))",
-                                    transform: "translateY(-50%) scaleX(calc(0.7 + var(--effect, 0) * 0.5))",
-                                }}
-                            />
-                        )}
-                        <span
-                            className="line-sidebar-label relative inline-flex items-baseline leading-[1.2]"
-                            style={{
-                                color: "color-mix(in srgb, var(--accent-color) calc(var(--effect, 0) * 100%), var(--text-color))",
-                                fontSize: "var(--font-size)",
-                                transform: "translateX(calc(var(--effect, 0) * var(--max-shift)))",
-                            }}
+                        <button
+                            type="button"
+                            aria-current={activeIndex === index ? "location" : undefined}
+                            onClick={() => handleClick(index, label)}
+                            className="relative block w-full cursor-pointer py-0 text-left focus-visible:outline-none"
                         >
-                            {showIndex && (
-                                <span className="mr-[0.6rem] font-mono text-[0.85em] opacity-70">
-                                    {String(index + 1).padStart(2, "0")}
-                                </span>
+                            {showMarker && (
+                                <span
+                                    aria-hidden="true"
+                                    className="line-sidebar-marker absolute top-1/2 block h-[2px] origin-left -translate-y-1/2 rounded-full"
+                                    style={{
+                                        left: `calc(-1 * ${markerLength + markerGap}px)`,
+                                        width: `${markerLength}px`,
+                                        backgroundColor: "color-mix(in srgb, var(--accent-color) calc(var(--effect, 0) * 100%), var(--marker-color))",
+                                        transform: "translateY(-50%) scaleX(calc(0.7 + var(--effect, 0) * 0.5))",
+                                    }}
+                                />
                             )}
-                            <span>{label}</span>
-                        </span>
+                            <span
+                                className="line-sidebar-label relative inline-flex items-baseline leading-[1.2]"
+                                style={{
+                                    color: "color-mix(in srgb, var(--accent-color) calc(var(--effect, 0) * 100%), var(--text-color))",
+                                    fontSize: "var(--font-size)",
+                                    transform: "translateX(calc(var(--effect, 0) * var(--max-shift)))",
+                                }}
+                            >
+                                {showIndex && (
+                                    <span className="mr-[0.6rem] font-mono text-[0.85em] opacity-70">
+                                        {String(index + 1).padStart(2, "0")}
+                                    </span>
+                                )}
+                                <span>{label}</span>
+                            </span>
+                        </button>
                     </li>
                 ))}
             </ul>

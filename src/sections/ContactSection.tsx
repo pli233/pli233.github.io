@@ -1,17 +1,30 @@
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { socialMediaUrl } from "../Details";
 import RevealOnScroll from "../components/RevealOnScroll";
 import GoogleTechIcon from "../components/GoogleTechIcon";
 
 export default function ContactSection() {
     const [copied, setCopied] = useState(false);
+    const resetTimerRef = useRef<number | null>(null);
     const emailAddr = socialMediaUrl.email.replace("mailto:", "");
+
+    useEffect(() => () => {
+        if (resetTimerRef.current !== null) {
+            window.clearTimeout(resetTimerRef.current);
+        }
+    }, []);
 
     const copyEmail = async () => {
         try {
             await navigator.clipboard.writeText(emailAddr);
             setCopied(true);
-            setTimeout(() => setCopied(false), 2000);
+            if (resetTimerRef.current !== null) {
+                window.clearTimeout(resetTimerRef.current);
+            }
+            resetTimerRef.current = window.setTimeout(() => {
+                setCopied(false);
+                resetTimerRef.current = null;
+            }, 2000);
         } catch {
             window.prompt("Copy email:", emailAddr);
         }
@@ -37,6 +50,7 @@ export default function ContactSection() {
                             <h3 className="text-base font-semibold text-scandi-charcoal">Email</h3>
                             <p className="text-scandi-text-secondary text-[13px]">{emailAddr}</p>
                             <button
+                                type="button"
                                 onClick={copyEmail}
                                 className="btn-outline text-xs mt-auto"
                                 aria-live="polite"

@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 import { personalDetails, socialMediaUrl } from "../Details";
 import GoogleTechIcon from "../components/GoogleTechIcon";
 import ProfileCard from "../components/ProfileCard";
@@ -57,10 +58,10 @@ export default function HeroSection() {
                                 <GoogleTechIcon name="contact" className="h-6 w-6" />
                                 <span>Contact Me</span>
                             </a>
-                            <a href="/resume" className="btn-outline">
+                            <Link to="/resume" className="btn-outline">
                                 <GoogleTechIcon name="resume" className="h-6 w-6" />
                                 <span>View Resume</span>
-                            </a>
+                            </Link>
                         </div>
 
                         {/* Social Links */}

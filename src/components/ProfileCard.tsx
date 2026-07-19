@@ -117,7 +117,14 @@ export default function ProfileCard({
                 role="img"
                 aria-label={`${name || "Profile"}${title ? `, ${title}` : ""}`}
             >
-                <img src={avatarUrl} alt="" className="profile-card-avatar" />
+                <img
+                    src={avatarUrl}
+                    alt=""
+                    loading="eager"
+                    decoding="async"
+                    fetchPriority="high"
+                    className="profile-card-avatar"
+                />
                 <div className="profile-card-gradient" aria-hidden="true" />
 
                 {iconUrl && (

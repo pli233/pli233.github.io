@@ -1,22 +1,26 @@
 import { useEffect, useState } from "react";
 import type { MouseEvent } from "react";
 import { useLocation } from "react-router-dom";
+import { usePrefersReducedMotion } from "../hooks/usePrefersReducedMotion";
 import type { NavigationItem } from "../types/portfolio";
 import ProgressRail from "./ProgressRail";
 
-const navItems: readonly NavigationItem[] = [
+const navItems = [
     { href: "/#home", label: "Home", section: "home" },
     { href: "/#education", label: "Education", section: "education" },
     { href: "/#experience", label: "Experience", section: "experience" },
     { href: "/#projects", label: "Projects", section: "projects" },
     { href: "/#technologies", label: "Tech Stack", section: "technologies" },
     { href: "/#contact", label: "Contact", section: "contact" },
-];
+] as const satisfies readonly NavigationItem[];
+
+const sectionOrder = ["contact", "technologies", "projects", "experience", "education", "home"] as const;
 
 export default function Header() {
     const [activeSection, setActiveSection] = useState<string | null>("home");
     const [isRailExpanded, setIsRailExpanded] = useState(false);
     const location = useLocation();
+    const prefersReducedMotion = usePrefersReducedMotion();
 
     useEffect(() => {
         let frameId: number | null = null;
@@ -38,7 +42,7 @@ export default function Header() {
                     return;
                 }
 
-                for (const section of ["contact", "technologies", "projects", "experience", "education", "home"]) {
+                for (const section of sectionOrder) {
                     const element = document.getElementById(section);
                     if (element && element.getBoundingClientRect().top <= 100) {
                         setActiveSection(section);
@@ -68,7 +72,6 @@ export default function Header() {
             const scrollToSection = () => {
                 const element = document.getElementById(sectionId);
                 if (element) {
-                    const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
                     element.scrollIntoView({ behavior: prefersReducedMotion ? "auto" : "smooth" });
                     setActiveSection(sectionId);
                 } else if (attempts < 50) {
@@ -79,7 +82,7 @@ export default function Header() {
 
             window.requestAnimationFrame(scrollToSection);
         }
-    }, [location]);
+    }, [location, prefersReducedMotion]);
 
     const handleNavigate = (
         event: MouseEvent<HTMLAnchorElement> | null,
@@ -90,7 +93,6 @@ export default function Header() {
             event?.preventDefault();
             const element = document.getElementById(section);
             if (element) {
-                const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
                 element.scrollIntoView({ behavior: prefersReducedMotion ? "auto" : "smooth" });
                 window.history.pushState(null, "", href);
                 setActiveSection(section);
