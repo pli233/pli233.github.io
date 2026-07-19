@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { HiArrowLeft } from "react-icons/hi2";
 import { socialMediaUrl } from "../Details";
 import resumePreview from "../assets/resume-preview.png";
-import signature from "../assets/signature.png";
+import signatureResume from "../assets/signature-resume.png";
 import ResumeActions from "../components/resume/ResumeActions";
 import ResumePreview from "../components/resume/ResumePreview";
 
@@ -35,22 +35,19 @@ export default function Resume() {
                             Back to portfolio
                         </Link>
 
-                        <div className="mt-8 flex items-center gap-4 sm:gap-5">
+                        <h1 className="mt-5 max-w-[520px]">
                             <Link
                                 to="/"
-                                aria-label="Peiyuan Li home"
-                                className="inline-flex shrink-0 rounded-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-scandi-sage/35 focus-visible:ring-offset-4"
+                                aria-label="Resume — back to portfolio"
+                                className="block rounded-lg transition-opacity hover:opacity-70 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-scandi-sage/35 focus-visible:ring-offset-4"
                             >
                                 <img
-                                    src={signature}
-                                    alt="Peiyuan Li"
-                                    className="h-10 w-28 object-contain drop-shadow-[0_4px_12px_rgba(24,25,27,0.1)] transition-opacity hover:opacity-70 sm:h-11 sm:w-32"
+                                    src={signatureResume}
+                                    alt="Peiyuan Li Resume"
+                                    className="h-auto w-full drop-shadow-[0_4px_12px_rgba(24,25,27,0.1)]"
                                 />
                             </Link>
-                            <h1 className="font-sans text-5xl font-medium leading-none tracking-[-0.05em] text-scandi-charcoal sm:text-6xl lg:text-7xl">
-                                Resume
-                            </h1>
-                        </div>
+                        </h1>
                     </div>
 
                     <div className="w-full lg:w-auto">
