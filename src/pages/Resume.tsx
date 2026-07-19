@@ -25,32 +25,30 @@ export default function Resume() {
             </div>
 
             <div className="section-container relative">
-                <header className="grid gap-8 lg:grid-cols-[minmax(0,1fr)_auto] lg:items-end lg:gap-16">
-                    <div className="max-w-2xl">
+                <header className="grid gap-5 lg:grid-cols-[auto_minmax(0,1fr)_auto] lg:items-center lg:gap-6">
+                    <Link
+                        to="/"
+                        className="inline-flex w-fit items-center gap-2 rounded-lg py-1 text-sm font-semibold text-scandi-text-secondary transition-colors hover:text-scandi-charcoal focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-scandi-sage/40"
+                    >
+                        <HiArrowLeft aria-hidden="true" className="h-4 w-4" />
+                        Back to portfolio
+                    </Link>
+
+                    <h1 className="w-full sm:w-64">
                         <Link
                             to="/"
-                            className="inline-flex items-center gap-2 rounded-lg py-1 text-sm font-semibold text-scandi-text-secondary transition-colors hover:text-scandi-charcoal focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-scandi-sage/40"
+                            aria-label="Resume — back to portfolio"
+                            className="block rounded-lg transition-opacity hover:opacity-70 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-scandi-sage/35 focus-visible:ring-offset-4"
                         >
-                            <HiArrowLeft aria-hidden="true" className="h-4 w-4" />
-                            Back to portfolio
+                            <img
+                                src={signatureResume}
+                                alt="Peiyuan Li Resume"
+                                className="h-auto w-full drop-shadow-[0_4px_12px_rgba(24,25,27,0.1)]"
+                            />
                         </Link>
+                    </h1>
 
-                        <h1 className="mt-5 w-full sm:w-64">
-                            <Link
-                                to="/"
-                                aria-label="Resume — back to portfolio"
-                                className="block rounded-lg transition-opacity hover:opacity-70 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-scandi-sage/35 focus-visible:ring-offset-4"
-                            >
-                                <img
-                                    src={signatureResume}
-                                    alt="Peiyuan Li Resume"
-                                    className="h-auto w-full drop-shadow-[0_4px_12px_rgba(24,25,27,0.1)]"
-                                />
-                            </Link>
-                        </h1>
-                    </div>
-
-                    <div className="w-full lg:w-auto">
+                    <div className="w-full lg:w-auto lg:justify-self-end">
                         <ResumeActions pdfUrl={socialMediaUrl.resume} />
                     </div>
                 </header>
