@@ -55,7 +55,7 @@ export default function ProgressRail({ items, isActive, onNavigate, isExpanded, 
                 </div>
 
                 <div className="pointer-events-auto absolute bottom-6 left-1/2 -translate-x-1/2 sm:bottom-8">
-                    <div className="flex min-w-[248px] items-center justify-center gap-2 rounded-[28px] border border-scandi-border/80 bg-white/92 p-3 shadow-[0_12px_32px_rgba(60,64,67,0.12)] backdrop-blur-md">
+                    <div className="flex min-w-[272px] items-center justify-center gap-2 rounded-[28px] border border-scandi-border/80 bg-white/92 px-4 py-2 shadow-[0_12px_32px_rgba(60,64,67,0.12)] backdrop-blur-md">
                         <Link to="/" aria-label="Peiyuan Li home" className="rounded-xl p-2 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-scandi-sage/35">
                             <img src={signature} alt="Peiyuan Li" className="h-8 w-24 object-contain" />
                         </Link>
