@@ -1,4 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,100..900;1,9..144,100..900&family=Inter:wght@300;400;500;600;700&family=Newsreader:ital,opsz,wght@0,6..72,400..700;1,6..72,400..700&display=swap');
+@import "tw-animate-css";
+@import "shadcn/tailwind.css";
+@import "@fontsource-variable/geist";
 
 @tailwind base;
 @tailwind components;
@@ -7,10 +10,11 @@
 @layer base {
   html {
     scroll-behavior: smooth;
+    @apply font-sans;
   }
 
   body {
-    @apply bg-scandi-bg text-scandi-charcoal;
+    @apply bg-background text-foreground;
     @apply min-h-screen antialiased;
     font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Text', 'Inter', system-ui, sans-serif;
     font-optical-sizing: auto;
@@ -22,6 +26,8 @@
 
   * {
     box-sizing: border-box;
+    border-color: var(--border);
+    outline-color: color-mix(in srgb, var(--ring) 50%, transparent);
   }
 
   section {
@@ -36,6 +42,77 @@
   ::selection {
     background-color: rgba(26, 115, 232, 0.16);
     color: #202124;
+  }
+  .theme {
+    --font-heading: var(--font-sans);
+    --font-sans: 'Geist Variable', sans-serif;
+  }
+  :root {
+    --background: oklch(1 0 0);
+    --foreground: oklch(0.145 0 0);
+    --card: oklch(1 0 0);
+    --card-foreground: oklch(0.145 0 0);
+    --popover: oklch(1 0 0);
+    --popover-foreground: oklch(0.145 0 0);
+    --primary: oklch(0.205 0 0);
+    --primary-foreground: oklch(0.985 0 0);
+    --secondary: oklch(0.97 0 0);
+    --secondary-foreground: oklch(0.205 0 0);
+    --muted: oklch(0.97 0 0);
+    --muted-foreground: oklch(0.556 0 0);
+    --accent: oklch(0.97 0 0);
+    --accent-foreground: oklch(0.205 0 0);
+    --destructive: oklch(0.577 0.245 27.325);
+    --border: oklch(0.922 0 0);
+    --input: oklch(0.922 0 0);
+    --ring: oklch(0.708 0 0);
+    --chart-1: oklch(0.87 0 0);
+    --chart-2: oklch(0.556 0 0);
+    --chart-3: oklch(0.439 0 0);
+    --chart-4: oklch(0.371 0 0);
+    --chart-5: oklch(0.269 0 0);
+    --radius: 0.625rem;
+    --sidebar: oklch(0.985 0 0);
+    --sidebar-foreground: oklch(0.145 0 0);
+    --sidebar-primary: oklch(0.205 0 0);
+    --sidebar-primary-foreground: oklch(0.985 0 0);
+    --sidebar-accent: oklch(0.97 0 0);
+    --sidebar-accent-foreground: oklch(0.205 0 0);
+    --sidebar-border: oklch(0.922 0 0);
+    --sidebar-ring: oklch(0.708 0 0);
+  }
+  .dark {
+    --background: oklch(0.145 0 0);
+    --foreground: oklch(0.985 0 0);
+    --card: oklch(0.205 0 0);
+    --card-foreground: oklch(0.985 0 0);
+    --popover: oklch(0.205 0 0);
+    --popover-foreground: oklch(0.985 0 0);
+    --primary: oklch(0.922 0 0);
+    --primary-foreground: oklch(0.205 0 0);
+    --secondary: oklch(0.269 0 0);
+    --secondary-foreground: oklch(0.985 0 0);
+    --muted: oklch(0.269 0 0);
+    --muted-foreground: oklch(0.708 0 0);
+    --accent: oklch(0.269 0 0);
+    --accent-foreground: oklch(0.985 0 0);
+    --destructive: oklch(0.704 0.191 22.216);
+    --border: oklch(1 0 0 / 10%);
+    --input: oklch(1 0 0 / 15%);
+    --ring: oklch(0.556 0 0);
+    --chart-1: oklch(0.87 0 0);
+    --chart-2: oklch(0.556 0 0);
+    --chart-3: oklch(0.439 0 0);
+    --chart-4: oklch(0.371 0 0);
+    --chart-5: oklch(0.269 0 0);
+    --sidebar: oklch(0.205 0 0);
+    --sidebar-foreground: oklch(0.985 0 0);
+    --sidebar-primary: oklch(0.488 0.243 264.376);
+    --sidebar-primary-foreground: oklch(0.985 0 0);
+    --sidebar-accent: oklch(0.269 0 0);
+    --sidebar-accent-foreground: oklch(0.985 0 0);
+    --sidebar-border: oklch(1 0 0 / 10%);
+    --sidebar-ring: oklch(0.556 0 0);
   }
 }
 
@@ -239,20 +316,33 @@
   .line-sidebar-hidden-resting .line-sidebar-label {
     pointer-events: none;
     white-space: nowrap;
+    opacity: 0;
+    transform: translateX(0);
+    transition: opacity 180ms ease, transform 240ms cubic-bezier(0.16, 1, 0.3, 1), color 180ms ease;
   }
 
   .line-sidebar-hidden-resting li:hover .line-sidebar-label,
   .line-sidebar-hidden-resting li:focus-visible .line-sidebar-label {
     opacity: 1 !important;
-    transform: translateX(var(--line-max-shift)) !important;
+    transform: translateX(var(--max-shift)) !important;
+    font-weight: 600;
   }
 
   .line-sidebar-hidden-resting li:hover .line-sidebar-marker,
   .line-sidebar-hidden-resting li:focus-visible .line-sidebar-marker,
   .line-sidebar-hidden-resting li[aria-current="location"] .line-sidebar-marker {
-    background: var(--line-accent) !important;
+    background: var(--accent-color) !important;
     box-shadow: 0 0 0 3px rgba(26, 115, 232, 0.08);
     transform: translateY(-50%) scaleX(1.2) !important;
+  }
+
+  .line-sidebar-marker {
+    transition: background-color 180ms ease, box-shadow 180ms ease, transform 240ms cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .progress-navigation-panel {
+    transform-origin: bottom center;
+    animation: progressNavigationEnter 220ms cubic-bezier(0.16, 1, 0.3, 1) both;
   }
 
   .border-glow-shell {
@@ -568,6 +658,17 @@
   100% {
     opacity: 0;
     transform: translateX(70%) rotate(16deg);
+  }
+}
+
+@keyframes progressNavigationEnter {
+  from {
+    opacity: 0;
+    transform: translate(-50%, 8px) scale(0.96);
+  }
+  to {
+    opacity: 1;
+    transform: translate(-50%, 0) scale(1);
   }
 }
 
