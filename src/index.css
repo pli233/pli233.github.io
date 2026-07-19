@@ -31,7 +31,7 @@
   }
 
   section {
-    @apply scroll-mt-[76px];
+    scroll-margin-top: var(--section-scroll-offset);
   }
 
   main > section:nth-child(even) {
@@ -48,6 +48,8 @@
     --font-sans: 'Geist Variable', sans-serif;
   }
   :root {
+    --section-scroll-offset: 76px;
+    --desktop-footer-block-size: 185.5px;
     --background: oklch(1 0 0);
     --foreground: oklch(0.145 0 0);
     --card: oklch(1 0 0);
@@ -113,6 +115,12 @@
     --sidebar-accent-foreground: oklch(0.985 0 0);
     --sidebar-border: oklch(1 0 0 / 10%);
     --sidebar-ring: oklch(0.556 0 0);
+  }
+}
+
+@media (min-width: 1024px) {
+  #contact {
+    min-height: calc(100svh - var(--section-scroll-offset) - var(--desktop-footer-block-size));
   }
 }
 
