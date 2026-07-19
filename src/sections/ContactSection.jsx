@@ -39,6 +39,7 @@ export default function ContactSection() {
                             <button
                                 onClick={copyEmail}
                                 className="btn-outline text-xs mt-auto"
+                                aria-live="polite"
                             >
                                 <GoogleTechIcon name={copied ? "check" : "copy"} className="h-5 w-5" />
                                 <span>{copied ? "Copied!" : "Copy Address"}</span>

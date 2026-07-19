@@ -13,9 +13,9 @@ import unifiedBusImage from "/src/assets/projects/project-unifiedbus-4k.webp";
 
 export const personalDetails = {
     name: "Peiyuan Li",
-    tagline: "Software Developer · AI Enthusiast",
+    tagline: "AI-native software engineer.",
     img: me, // 你可以把头像放到 public/me.jpg，然后这里写 "/me.jpg"
-    about: `I'm a Software Engineer at Google working on Google Ads, where my work sits at the intersection of product engineering, systems reliability, and applied AI. I hold a Master's from Brown and have prior experience across agentic AI, AI infrastructure, and healthcare product development. I care about building software that's clear, scalable, and genuinely useful in real user workflows.`,
+    about: `I build AI-native products and the systems behind them—reliable software, clear product thinking, and tools that hold up in real workflows.`,
 };
 
 export const socialMediaUrl = {

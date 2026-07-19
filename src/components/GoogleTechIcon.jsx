@@ -15,7 +15,7 @@ import resumeIcon from "../assets/icons/resume-3d.png";
 
 const iconMap = {
     resume: { image: resumeIcon, tone: "blue", brand: true },
-    contact: { icon: MdChatBubble, tone: "blue" },
+    contact: { icon: MdChatBubble, tone: "blue", brand: true },
     email: { image: gmailLogo, tone: "gmail", brand: true },
     linkedin: { icon: FaLinkedin, tone: "linkedin", brand: true },
     github: { icon: FaGithub, tone: "github", brand: true },

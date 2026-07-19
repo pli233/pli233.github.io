@@ -40,7 +40,7 @@ export default function ProjectCardSwap({ projects }) {
     const cardSwapRef = useRef(null);
 
     return (
-        <div className="project-card-swap relative flex h-[520px] w-full items-center justify-center overflow-hidden md:h-[650px]">
+        <div className="project-card-swap relative flex h-[520px] w-full items-center justify-center overflow-hidden md:h-[650px]" aria-label="Selected projects" role="region">
             <div className="pointer-events-none absolute inset-x-8 top-1/2 h-24 -translate-y-1/2 rounded-full bg-scandi-sage/10 blur-3xl" />
 
             <CardSwap
@@ -52,6 +52,7 @@ export default function ProjectCardSwap({ projects }) {
                 delay={3600}
                 pauseOnHover
                 skewAmount={compact ? 2.2 : 4}
+                easing="smooth"
             >
                 {projects.map((project) => (
                     <Card key={project.title}>
@@ -104,7 +105,7 @@ export default function ProjectCardSwap({ projects }) {
                     type="button"
                     aria-label="Previous project"
                     onClick={() => cardSwapRef.current?.previous()}
-                    className="grid h-12 w-12 place-items-center rounded-full border border-scandi-border bg-white text-scandi-charcoal shadow-[0_8px_24px_rgba(26,26,46,0.08)] transition hover:-translate-y-0.5 hover:border-scandi-text-secondary/40 hover:shadow-[0_12px_30px_rgba(26,26,46,0.12)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-scandi-sage/30"
+                    className="grid h-12 w-12 place-items-center rounded-full border border-scandi-border bg-white text-scandi-charcoal shadow-[0_8px_24px_rgba(26,26,46,0.08)] transition-[transform,box-shadow,border-color] hover:-translate-y-0.5 hover:border-scandi-text-secondary/40 hover:shadow-[0_12px_30px_rgba(26,26,46,0.12)] active:scale-95 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-scandi-sage/30"
                 >
                     <ChevronIcon direction="left" />
                 </button>
@@ -112,7 +113,7 @@ export default function ProjectCardSwap({ projects }) {
                     type="button"
                     aria-label="Next project"
                     onClick={() => cardSwapRef.current?.next()}
-                    className="grid h-12 w-12 place-items-center rounded-full border border-scandi-border bg-white text-scandi-charcoal shadow-[0_8px_24px_rgba(26,26,46,0.08)] transition hover:-translate-y-0.5 hover:border-scandi-text-secondary/40 hover:shadow-[0_12px_30px_rgba(26,26,46,0.12)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-scandi-sage/30"
+                    className="grid h-12 w-12 place-items-center rounded-full border border-scandi-border bg-white text-scandi-charcoal shadow-[0_8px_24px_rgba(26,26,46,0.08)] transition-[transform,box-shadow,border-color] hover:-translate-y-0.5 hover:border-scandi-text-secondary/40 hover:shadow-[0_12px_30px_rgba(26,26,46,0.12)] active:scale-95 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-scandi-sage/30"
                 >
                     <ChevronIcon direction="right" />
                 </button>

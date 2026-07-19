@@ -6,7 +6,7 @@ const stacks = [
         title: "Languages",
         count: "10 skills",
         icon: "languages",
-        items: ["Python", "Java", "C", "SQL", "R", "HTML", "CSS", "JavaScript", "TypeScript", "GO"],
+        items: ["Python", "C++", "C", "Go", "Java", "SQL", "R", "HTML", "CSS", "JavaScript", "TypeScript"],
     },
     {
         title: "AI / ML",
@@ -57,8 +57,8 @@ export default function TechnologiesSection() {
                             <div className="scandi-card p-6 h-full">
                                 {/* Header */}
                                 <div className="flex items-center gap-3 mb-4">
-                                    <div className="flex h-12 w-12 items-center justify-center rounded-[20px] border border-[#DDE8FC] bg-white shadow-sm shadow-black/[0.03]">
-                                        <GoogleTechIcon name={stack.icon} className="h-9 w-9" />
+                                    <div className="flex h-11 w-11 items-center justify-center">
+                                        <GoogleTechIcon name={stack.icon} className="h-10 w-10" />
                                     </div>
                                     <div>
                                         <h3 className="text-sm font-semibold text-scandi-charcoal">{stack.title}</h3>

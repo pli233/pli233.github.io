@@ -51,7 +51,7 @@ const CardSwap = forwardRef(function CardSwap(
         pauseOnHover = false,
         onCardClick,
         skewAmount = 6,
-        easing = "elastic",
+        easing = "smooth",
         children,
     },
     ref
@@ -92,8 +92,15 @@ const CardSwap = forwardRef(function CardSwap(
             }
         });
 
-        const config =
-            easing === "elastic"
+        const config = prefersReducedMotion
+            ? {
+                ease: "none",
+                dropDuration: 0,
+                moveDuration: 0,
+                returnDuration: 0,
+                promoteOverlap: 0,
+            }
+            : easing === "elastic"
                 ? {
                     ease: "elastic.out(0.6, 0.9)",
                     dropDuration: 1.45,
@@ -102,11 +109,11 @@ const CardSwap = forwardRef(function CardSwap(
                     promoteOverlap: 0.72,
                 }
                 : {
-                    ease: "power2.inOut",
-                    dropDuration: 0.7,
-                    moveDuration: 0.7,
-                    returnDuration: 0.7,
-                    promoteOverlap: 0.45,
+                    ease: "power3.out",
+                    dropDuration: 0.62,
+                    moveDuration: 0.62,
+                    returnDuration: 0.62,
+                    promoteOverlap: 0.32,
                 };
 
         const clearScheduledSwap = () => {
@@ -123,10 +130,16 @@ const CardSwap = forwardRef(function CardSwap(
             }
         };
 
+        const interruptActiveSwap = () => {
+            if (!timeline.current) return;
+            timeline.current.kill();
+            timeline.current = null;
+        };
+
         const swapNext = (manual = false) => {
             if (order.current.length < 2 || (!manual && paused.current)) return;
-            if (timeline.current) return;
 
+            interruptActiveSwap();
             clearScheduledSwap();
 
             const [front, ...rest] = order.current;
@@ -146,7 +159,7 @@ const CardSwap = forwardRef(function CardSwap(
             timeline.current = nextTimeline;
 
             nextTimeline.to(frontElement, {
-                y: "+=560",
+                yPercent: 75,
                 duration: config.dropDuration,
                 ease: config.ease,
             });
@@ -165,6 +178,7 @@ const CardSwap = forwardRef(function CardSwap(
                         x: slot.x,
                         y: slot.y,
                         z: slot.z,
+                        yPercent: -50,
                         duration: config.moveDuration,
                         ease: config.ease,
                     },
@@ -179,6 +193,7 @@ const CardSwap = forwardRef(function CardSwap(
                     x: backSlot.x,
                     y: backSlot.y,
                     z: backSlot.z,
+                    yPercent: -50,
                     duration: config.returnDuration,
                     ease: config.ease,
                 },
@@ -188,8 +203,8 @@ const CardSwap = forwardRef(function CardSwap(
 
         const swapPrevious = (manual = false) => {
             if (order.current.length < 2 || (!manual && paused.current)) return;
-            if (timeline.current) return;
 
+            interruptActiveSwap();
             clearScheduledSwap();
 
             const current = order.current;
@@ -215,6 +230,7 @@ const CardSwap = forwardRef(function CardSwap(
                 x: frontSlot.x,
                 y: frontSlot.y,
                 z: frontSlot.z,
+                yPercent: -50,
                 duration: config.moveDuration,
                 ease: config.ease,
             });
@@ -231,6 +247,7 @@ const CardSwap = forwardRef(function CardSwap(
                         x: slot.x,
                         y: slot.y,
                         z: slot.z,
+                        yPercent: -50,
                         duration: config.moveDuration,
                         ease: config.ease,
                     },

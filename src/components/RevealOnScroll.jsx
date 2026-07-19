@@ -14,12 +14,15 @@ export default function RevealOnScroll({ children, className = "", delay = 0, di
     return (
         <div
             ref={ref}
-            className={`transition-all duration-700 ease-out ${
+            className={`transition-[opacity,transform] duration-700 ease-out motion-reduce:transition-none ${
                 isVisible
                     ? "opacity-100 translate-y-0 translate-x-0"
                     : `opacity-0 ${directionStyles[direction]}`
             } ${className}`}
-            style={{ transitionDelay: `${delay}ms` }}
+            style={{
+                transitionDelay: `${delay}ms`,
+                willChange: isVisible ? "auto" : "opacity, transform",
+            }}
         >
             {children}
         </div>
