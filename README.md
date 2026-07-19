@@ -1,18 +1,26 @@
-# React + Vite
+# Peiyuan Li — Portfolio
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Source for [pli233.github.io](https://pli233.github.io/), built with React, TypeScript, Vite, and Tailwind CSS.
 
-Currently, two official plugins are available:
+## Development
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+```bash
+npm ci
+npm run dev
+```
 
-## React Compiler
+Quality checks:
 
-The React Compiler is enabled on this template. See [this documentation](https://react.dev/learn/react-compiler) for more information.
+```bash
+npm run typecheck
+npm run lint
+npm run build
+```
 
-Note: This will impact Vite dev & build performances.
+## Deployment
 
-## Expanding the ESLint configuration
+Pull requests run the CI workflow. Pushes to `main` run the same checks, build the Vite app, and deploy the `dist` artifact with GitHub's official Pages Actions.
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+GitHub Pages is configured to use **GitHub Actions** as its publishing source. There is no local deploy command or generated deployment branch.
+
+The build also emits `dist/resume/index.html`, so the public `/resume` route is served as a real static entry instead of relying on the SPA 404 redirect.
