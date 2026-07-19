@@ -86,7 +86,7 @@ function classNames(...values) {
     return values.filter(Boolean).join(" ");
 }
 
-function IconShell({ config, name, className = "h-5 w-5", title }) {
+function IconShell({ config, name, className = "h-5 w-5", title, plain = false }) {
     const Icon = config.icon;
     const toneStyle = toneStyles[config.tone] || toneStyles.blue;
     const accessibility = title
@@ -125,6 +125,19 @@ function IconShell({ config, name, className = "h-5 w-5", title }) {
         );
     }
 
+    if (plain) {
+        return (
+            <Icon
+                className={classNames("google-tech-icon google-tech-icon-plain", className)}
+                data-google-tech-icon={name}
+                data-icon-tone={config.tone}
+                focusable="false"
+                style={toneStyle}
+                {...accessibility}
+            />
+        );
+    }
+
     return (
         <span
             className={classNames(
@@ -141,7 +154,7 @@ function IconShell({ config, name, className = "h-5 w-5", title }) {
     );
 }
 
-export default function GoogleTechIcon({ name, className, title }) {
+export default function GoogleTechIcon({ name, className, title, plain = false }) {
     const config = iconMap[name] || iconMap.resume;
-    return <IconShell config={config} name={name} className={className} title={title} />;
+    return <IconShell config={config} name={name} className={className} title={title} plain={plain} />;
 }

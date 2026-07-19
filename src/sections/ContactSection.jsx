@@ -41,7 +41,7 @@ export default function ContactSection() {
                                 className="btn-outline text-xs mt-auto"
                                 aria-live="polite"
                             >
-                                <GoogleTechIcon name={copied ? "check" : "copy"} className="h-5 w-5" />
+                                <GoogleTechIcon name={copied ? "check" : "copy"} className="h-5 w-5" plain />
                                 <span>{copied ? "Copied!" : "Copy Address"}</span>
                             </button>
                         </div>

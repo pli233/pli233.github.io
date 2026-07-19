@@ -4,33 +4,34 @@ import LineSidebar from "./LineSidebar";
 import signature from "../assets/signature.png";
 
 export default function ProgressRail({ items, isActive, onNavigate, isExpanded, onToggle }) {
-    const activeIndex = items.findIndex((item) => isActive(item.section));
+    const railItems = items.filter((item) => item.section !== "home");
+    const activeIndex = railItems.findIndex((item) => isActive(item.section));
 
     return (
         <aside className="pointer-events-none fixed inset-0 z-50">
             <div className="relative h-full w-full">
-                <div className="pointer-events-auto absolute left-4 top-1/2 -translate-y-1/2 sm:left-6">
+                <div className="pointer-events-auto absolute left-0 top-1/2 -translate-y-1/2">
                     <LineSidebar
-                        items={items.map((item) => item.label)}
-                        accentColor="#1a73e8"
+                        items={railItems.map((item) => item.label)}
+                        accentColor="#707070"
                         textColor="#5f6368"
-                        markerColor="#dfe6f3"
+                        markerColor="#d1d1d1"
                         showIndex={false}
                         showMarker
                         proximityRadius={100}
-                        maxShift={22}
+                        maxShift={18}
                         falloff="smooth"
-                        markerLength={32}
-                        markerGap={12}
+                        markerLength={12}
+                        markerGap={0}
                         tickScale={0.5}
                         scaleTick
-                        itemGap={12}
-                        fontSize={0.78}
+                        itemGap={0}
+                        fontSize={0.4}
                         smoothing={100}
                         defaultActive={activeIndex >= 0 ? activeIndex : null}
                         activeIndex={activeIndex >= 0 ? activeIndex : null}
                         onItemClick={(index) => {
-                            const item = items[index];
+                            const item = railItems[index];
                             if (item) {
                                 onNavigate({ preventDefault() {} }, item.href, item.section);
                             }

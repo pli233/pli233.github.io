@@ -178,13 +178,14 @@ export default function LineSidebar({
                 "--max-shift": `${maxShift}px`,
                 "--item-gap": `${itemGap}px`,
                 "--font-size": `${fontSize}rem`,
+                paddingLeft: showMarker ? `${markerLength + markerGap}px` : undefined,
             } as CSSProperties}
         >
             <ul
                 ref={listRef}
                 onPointerMove={handlePointerMove}
                 onPointerLeave={handlePointerLeave}
-                className="m-0 flex list-none flex-col py-4"
+                className="m-0 flex list-none flex-col py-1"
                 style={{ gap: `${itemGap}px` }}
             >
                 {items.map((label, index) => (
@@ -203,12 +204,12 @@ export default function LineSidebar({
                                 handleClick(index, label);
                             }
                         }}
-                        className="group relative cursor-pointer py-1 focus-visible:outline-none"
+                        className="group relative cursor-pointer py-0 focus-visible:outline-none"
                     >
                         {showMarker && (
                             <span
                                 aria-hidden="true"
-                                className="line-sidebar-marker absolute top-1/2 block h-[3px] origin-left -translate-y-1/2 rounded-full"
+                                className="line-sidebar-marker absolute top-1/2 block h-[2px] origin-left -translate-y-1/2 rounded-full"
                                 style={{
                                     left: `calc(-1 * ${markerLength + markerGap}px)`,
                                     width: `${markerLength}px`,

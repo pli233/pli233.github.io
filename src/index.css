@@ -325,6 +325,7 @@
   .line-sidebar-hidden-resting li:focus-visible .line-sidebar-label {
     opacity: 1 !important;
     transform: translateX(var(--max-shift)) !important;
+    font-size: 0.78rem !important;
     font-weight: 600;
   }
 
@@ -332,7 +333,7 @@
   .line-sidebar-hidden-resting li:focus-visible .line-sidebar-marker,
   .line-sidebar-hidden-resting li[aria-current="location"] .line-sidebar-marker {
     background: var(--accent-color) !important;
-    box-shadow: 0 0 0 3px rgba(26, 115, 232, 0.08);
+    box-shadow: none;
     transform: translateY(-50%) scaleX(1.2) !important;
   }
 
