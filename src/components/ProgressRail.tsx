@@ -56,6 +56,31 @@ export default function ProgressRail({ items, isActive, onNavigate, isExpanded, 
                 </div>
 
                 <div className="pointer-events-auto absolute bottom-6 left-1/2 -translate-x-1/2 sm:bottom-8">
+                    {isExpanded && (
+                        <div id="progress-navigation" className="progress-navigation-panel pointer-events-auto absolute bottom-[calc(100%+8px)] right-0 w-48 rounded-2xl border border-scandi-border/80 bg-white/95 p-2 shadow-[0_18px_50px_rgba(60,64,67,0.14)] backdrop-blur-xl">
+                            <p className="px-3 pb-2 pt-1 text-[10px] font-semibold uppercase tracking-[0.16em] text-scandi-text-muted">Navigate</p>
+                            <div className="flex flex-col gap-1">
+                                {items.map((item) => (
+                                    <a
+                                        key={item.href}
+                                        href={item.href}
+                                        onClick={(event) => onNavigate(event, item.href, item.section)}
+                                        className={`rounded-xl px-3 py-2 text-sm font-medium transition-colors ${
+                                            isActive(item.section)
+                                                ? "bg-scandi-surface text-scandi-charcoal"
+                                                : "text-scandi-text-secondary hover:bg-scandi-surface hover:text-scandi-charcoal"
+                                        }`}
+                                    >
+                                        {item.label}
+                                    </a>
+                                ))}
+                                <a href="/resume" className="rounded-xl px-3 py-2 text-sm font-medium text-scandi-text-secondary transition-colors hover:bg-scandi-surface hover:text-scandi-charcoal">
+                                    Resume
+                                </a>
+                            </div>
+                        </div>
+                    )}
+
                     <div className="flex min-w-[272px] items-center justify-center gap-2 rounded-[28px] border border-scandi-border/80 bg-white/92 px-4 py-2 shadow-[0_12px_32px_rgba(60,64,67,0.12)] backdrop-blur-md">
                         <Link to="/" aria-label="Peiyuan Li home" className="rounded-xl p-2 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-scandi-sage/35">
                             <img src={signature} alt="Peiyuan Li" className="h-8 w-24 object-contain" />
@@ -85,31 +110,6 @@ export default function ProgressRail({ items, isActive, onNavigate, isExpanded, 
                         </button>
                     </div>
                 </div>
-
-                {isExpanded && (
-                    <div id="progress-navigation" className="progress-navigation-panel absolute bottom-[68px] left-1/2 w-48 -translate-x-1/2 rounded-2xl border border-scandi-border/80 bg-white/95 p-2 shadow-[0_18px_50px_rgba(60,64,67,0.14)] backdrop-blur-xl">
-                        <p className="px-3 pb-2 pt-1 text-[10px] font-semibold uppercase tracking-[0.16em] text-scandi-text-muted">Navigate</p>
-                        <div className="flex flex-col gap-1">
-                            {items.map((item) => (
-                                <a
-                                    key={item.href}
-                                    href={item.href}
-                                    onClick={(event) => onNavigate(event, item.href, item.section)}
-                                    className={`rounded-xl px-3 py-2 text-sm font-medium transition-colors ${
-                                        isActive(item.section)
-                                            ? "bg-scandi-surface text-scandi-charcoal"
-                                            : "text-scandi-text-secondary hover:bg-scandi-surface hover:text-scandi-charcoal"
-                                    }`}
-                                >
-                                    {item.label}
-                                </a>
-                            ))}
-                            <a href="/resume" className="rounded-xl px-3 py-2 text-sm font-medium text-scandi-text-secondary transition-colors hover:bg-scandi-surface hover:text-scandi-charcoal">
-                                Resume
-                            </a>
-                        </div>
-                    </div>
-                )}
             </div>
         </aside>
     );
