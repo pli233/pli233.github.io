@@ -17,14 +17,14 @@ export default function Resume() {
     }, []);
 
     return (
-        <main className="relative isolate min-h-screen overflow-hidden pb-40 pt-10 sm:pb-44 sm:pt-14 lg:pt-16">
+        <main className="relative isolate min-h-screen overflow-hidden pb-16 pt-28 sm:pb-20 sm:pt-32 lg:pt-16">
             <div aria-hidden="true" className="pointer-events-none absolute inset-0 -z-10 overflow-hidden">
                 <div className="absolute -right-40 top-16 h-[30rem] w-[30rem] rounded-full bg-[#dbe9ff]/55 blur-3xl" />
                 <div className="absolute -left-40 top-[32rem] h-[24rem] w-[24rem] rounded-full bg-[#f5e9df]/45 blur-3xl" />
             </div>
 
             <div className="section-container relative">
-                <header className="grid gap-9 border-b border-scandi-border/80 pb-9 lg:grid-cols-[minmax(0,1fr)_auto] lg:items-end lg:gap-16 lg:pb-11">
+                <header className="grid gap-8 border-b border-scandi-border/80 pb-9 lg:grid-cols-[minmax(0,1fr)_auto] lg:items-end lg:gap-16 lg:pb-11">
                     <div className="max-w-2xl">
                         <Link
                             to="/"
@@ -40,19 +40,9 @@ export default function Resume() {
                         <h1 className="mt-3 font-serif text-5xl leading-[0.95] tracking-[-0.05em] text-scandi-charcoal sm:text-6xl lg:text-7xl">
                             Résumé
                         </h1>
-                        <p className="mt-5 max-w-xl text-[15px] leading-7 text-scandi-text-secondary sm:text-base">
-                            Software engineer building AI-native products and the reliable systems behind them.
-                        </p>
                     </div>
 
-                    <div className="w-full lg:w-auto lg:min-w-[360px]">
-                        <div className="mb-4 flex items-center justify-between border-b border-scandi-border/75 pb-3 text-xs font-medium text-scandi-text-muted">
-                            <span>One-page PDF</span>
-                            <span className="inline-flex items-center gap-2 text-scandi-text-secondary">
-                                <span aria-hidden="true" className="h-2 w-2 rounded-full bg-[#34a853] shadow-[0_0_0_4px_rgba(52,168,83,0.1)]" />
-                                Ready to download
-                            </span>
-                        </div>
+                    <div className="w-full lg:w-auto">
                         <ResumeActions pdfUrl={socialMediaUrl.resume} />
                     </div>
                 </header>

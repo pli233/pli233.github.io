@@ -67,9 +67,20 @@ export default function ProgressRail({
                     </div>
                 )}
 
-                <div className="pointer-events-auto absolute bottom-6 left-1/2 -translate-x-1/2 sm:bottom-8">
+                <div
+                    className={`pointer-events-auto absolute left-1/2 -translate-x-1/2 ${
+                        isResumePage ? "top-6 sm:top-8" : "bottom-6 sm:bottom-8"
+                    }`}
+                >
                     {isExpanded && (
-                        <div id="progress-navigation" className="progress-navigation-panel pointer-events-auto absolute bottom-[calc(100%+8px)] right-0 w-48 rounded-2xl border border-scandi-border/80 bg-white/95 p-2 shadow-[0_18px_50px_rgba(60,64,67,0.14)] backdrop-blur-xl md:left-full md:right-auto">
+                        <div
+                            id="progress-navigation"
+                            className={`progress-navigation-panel pointer-events-auto absolute right-0 w-48 rounded-2xl border border-scandi-border/80 bg-white/95 p-2 shadow-[0_18px_50px_rgba(60,64,67,0.14)] backdrop-blur-xl md:left-full md:right-auto ${
+                                isResumePage
+                                    ? "progress-navigation-panel-top top-[calc(100%+8px)]"
+                                    : "bottom-[calc(100%+8px)]"
+                            }`}
+                        >
                             <p className="px-3 pb-2 pt-1 text-[10px] font-semibold uppercase tracking-[0.16em] text-scandi-text-muted">Navigate</p>
                             <div className="flex flex-col gap-1">
                                 {items.map((item) => (
