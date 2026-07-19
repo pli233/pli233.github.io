@@ -207,7 +207,7 @@ export default function LineSidebar({
                 ref={listRef}
                 onPointerMove={handlePointerMove}
                 onPointerLeave={handlePointerLeave}
-                className="m-0 flex list-none flex-col py-5 pr-12"
+                className="m-0 flex list-none flex-col py-5 pr-[60px]"
                 style={{
                     gap: `${itemGap}px`,
                     marginLeft: `-${railOffset}px`,

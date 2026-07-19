@@ -48,7 +48,7 @@ export default function ProgressRail({
                             falloff="smooth"
                             markerLength={12}
                             markerGap={0}
-                            railInset={16}
+                            railInset={4}
                             tickScale={0.5}
                             scaleTick
                             itemGap={0}
