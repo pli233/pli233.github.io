@@ -7,7 +7,7 @@ export function SiteFooter() {
     <footer className="section-shell pb-8 pt-4 sm:pb-10">
       <Separator />
       <div className="flex flex-col gap-5 pt-6 text-sm text-muted-foreground sm:flex-row sm:items-center sm:justify-between">
-        <p>© {new Date().getFullYear()} Peiyuan Li</p>
+        <p>© 2022–{new Date().getFullYear()} Peiyuan Li. All rights reserved.</p>
         <nav aria-label="Social links" className="flex flex-wrap items-center gap-5">
           <a
             href={socialLinks.linkedin}
