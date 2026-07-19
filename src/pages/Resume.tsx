@@ -9,7 +9,7 @@ import ResumePreview from "../components/resume/ResumePreview";
 export default function Resume() {
     useEffect(() => {
         const previousTitle = document.title;
-        document.title = "Résumé · Peiyuan Li";
+        document.title = "Resume · Peiyuan Li";
 
         return () => {
             document.title = previousTitle;
@@ -17,14 +17,14 @@ export default function Resume() {
     }, []);
 
     return (
-        <main className="relative isolate min-h-screen overflow-hidden pb-16 pt-28 sm:pb-20 sm:pt-32 lg:pt-16">
+        <main className="relative isolate min-h-screen overflow-hidden pb-16 pt-24 sm:pb-20">
             <div aria-hidden="true" className="pointer-events-none absolute inset-0 -z-10 overflow-hidden">
                 <div className="absolute -right-40 top-16 h-[30rem] w-[30rem] rounded-full bg-[#dbe9ff]/55 blur-3xl" />
                 <div className="absolute -left-40 top-[32rem] h-[24rem] w-[24rem] rounded-full bg-[#f5e9df]/45 blur-3xl" />
             </div>
 
             <div className="section-container relative">
-                <header className="grid gap-8 border-b border-scandi-border/80 pb-9 lg:grid-cols-[minmax(0,1fr)_auto] lg:items-end lg:gap-16 lg:pb-11">
+                <header className="grid gap-8 lg:grid-cols-[minmax(0,1fr)_auto] lg:items-end lg:gap-16">
                     <div className="max-w-2xl">
                         <Link
                             to="/"
@@ -34,11 +34,8 @@ export default function Resume() {
                             Back to portfolio
                         </Link>
 
-                        <p className="mt-8 text-xs font-semibold uppercase tracking-[0.2em] text-scandi-text-muted">
-                            Peiyuan Li · Software engineer
-                        </p>
-                        <h1 className="mt-3 font-serif text-5xl leading-[0.95] tracking-[-0.05em] text-scandi-charcoal sm:text-6xl lg:text-7xl">
-                            Résumé
+                        <h1 className="mt-8 font-sans text-5xl font-medium leading-none tracking-[-0.05em] text-scandi-charcoal sm:text-6xl lg:text-7xl">
+                            Resume
                         </h1>
                     </div>
 
@@ -47,7 +44,7 @@ export default function Resume() {
                     </div>
                 </header>
 
-                <section aria-label="Résumé document" className="mt-8 scroll-mt-0 sm:mt-10">
+                <section aria-label="Resume document" className="mt-8 scroll-mt-0">
                     <ResumePreview pdfUrl={socialMediaUrl.resume} previewUrl={resumePreview} />
                 </section>
             </div>

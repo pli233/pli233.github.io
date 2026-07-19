@@ -67,88 +67,89 @@ export default function ProgressRail({
                     </div>
                 )}
 
-                <div
-                    className={`pointer-events-auto absolute left-1/2 -translate-x-1/2 ${
-                        isResumePage ? "top-6 sm:top-8" : "bottom-6 sm:bottom-8"
-                    }`}
-                >
-                    {isExpanded && (
-                        <div
-                            id="progress-navigation"
-                            className={`progress-navigation-panel pointer-events-auto absolute right-0 w-48 rounded-2xl border border-scandi-border/80 bg-white/95 p-2 shadow-[0_18px_50px_rgba(60,64,67,0.14)] backdrop-blur-xl md:left-full md:right-auto ${
-                                isResumePage
-                                    ? "progress-navigation-panel-top top-[calc(100%+8px)]"
-                                    : "bottom-[calc(100%+8px)]"
-                            }`}
-                        >
-                            <p className="px-3 pb-2 pt-1 text-[10px] font-semibold uppercase tracking-[0.16em] text-scandi-text-muted">Navigate</p>
-                            <div className="flex flex-col gap-1">
-                                {items.map((item) => (
-                                    <a
-                                        key={item.href}
-                                        href={item.href}
-                                        onClick={(event) => onNavigate(event, item.href, item.section)}
-                                        className={`rounded-xl px-3 py-2 text-sm font-medium transition-colors ${
-                                            isActive(item.section)
-                                                ? "bg-scandi-surface text-scandi-charcoal"
-                                                : "text-scandi-text-secondary hover:bg-scandi-surface hover:text-scandi-charcoal"
-                                        }`}
-                                    >
-                                        {item.label}
-                                    </a>
-                                ))}
-                                <Link
-                                    to="/resume"
-                                    onClick={() => {
-                                        if (isExpanded) onToggle();
-                                    }}
-                                    aria-current={isResumePage ? "page" : undefined}
-                                    className={`rounded-xl px-3 py-2 text-sm font-medium transition-colors ${
-                                        isResumePage
-                                            ? "bg-scandi-surface text-scandi-charcoal"
-                                            : "text-scandi-text-secondary hover:bg-scandi-surface hover:text-scandi-charcoal"
-                                    }`}
-                                >
-                                    Resume
-                                </Link>
-                            </div>
-                        </div>
-                    )}
-
-                    <div className="flex min-w-[272px] items-center justify-center gap-2 rounded-[28px] border border-scandi-border/80 bg-white/92 px-4 py-2 shadow-[0_12px_32px_rgba(60,64,67,0.12)] backdrop-blur-md">
-                        <Link to="/" aria-label="Peiyuan Li home" className="rounded-xl p-2 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-scandi-sage/35">
-                            <img src={signature} alt="Peiyuan Li" className="h-8 w-24 object-contain" />
-                        </Link>
+                {isResumePage ? (
+                    <div className="absolute inset-x-0 top-6 mx-auto max-w-[1280px] px-6 sm:top-8 sm:px-12 lg:px-20">
                         <Link
-                            to="/resume"
-                            aria-label="Resume"
-                            aria-current={isResumePage ? "page" : undefined}
-                            className={`rounded-xl p-2 transition-[opacity,background-color] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-scandi-sage/35 ${
-                                isResumePage
-                                    ? "bg-scandi-surface opacity-100"
-                                    : "opacity-75 hover:bg-scandi-surface hover:opacity-100"
-                            }`}
+                            to="/"
+                            onClick={() => {
+                                if (isExpanded) onToggle();
+                            }}
+                            aria-label="Peiyuan Li home"
+                            className="pointer-events-auto inline-flex rounded-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-scandi-sage/35 focus-visible:ring-offset-4"
                         >
-                            <GoogleTechIcon name="resume" className="h-6 w-6" />
+                            <img
+                                src={signature}
+                                alt="Peiyuan Li"
+                                className="h-10 w-28 object-contain drop-shadow-[0_4px_12px_rgba(24,25,27,0.12)] transition-opacity hover:opacity-70"
+                            />
                         </Link>
-                        <button
-                            type="button"
-                            onClick={onToggle}
-                            aria-expanded={isExpanded}
-                            aria-controls="progress-navigation"
-                            aria-label={isExpanded ? "Collapse navigation" : "Expand navigation"}
-                            className="rounded-xl p-2 text-scandi-text-secondary transition-[background-color,color,transform] hover:bg-scandi-surface hover:text-scandi-charcoal active:scale-95 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-scandi-sage/35"
-                        >
-                            <svg className="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                                {isExpanded ? (
-                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-                                ) : (
-                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 7h16M4 12h16M4 17h16" />
-                                )}
-                            </svg>
-                        </button>
                     </div>
-                </div>
+                ) : (
+                    <div className="pointer-events-auto absolute bottom-6 left-1/2 -translate-x-1/2 sm:bottom-8">
+                        {isExpanded && (
+                            <div
+                                id="progress-navigation"
+                                className="progress-navigation-panel pointer-events-auto absolute bottom-[calc(100%+8px)] right-0 w-48 rounded-2xl border border-scandi-border/80 bg-white/95 p-2 shadow-[0_18px_50px_rgba(60,64,67,0.14)] backdrop-blur-xl md:left-full md:right-auto"
+                            >
+                                <p className="px-3 pb-2 pt-1 text-[10px] font-semibold uppercase tracking-[0.16em] text-scandi-text-muted">Navigate</p>
+                                <div className="flex flex-col gap-1">
+                                    {items.map((item) => (
+                                        <a
+                                            key={item.href}
+                                            href={item.href}
+                                            onClick={(event) => onNavigate(event, item.href, item.section)}
+                                            className={`rounded-xl px-3 py-2 text-sm font-medium transition-colors ${
+                                                isActive(item.section)
+                                                    ? "bg-scandi-surface text-scandi-charcoal"
+                                                    : "text-scandi-text-secondary hover:bg-scandi-surface hover:text-scandi-charcoal"
+                                            }`}
+                                        >
+                                            {item.label}
+                                        </a>
+                                    ))}
+                                    <Link
+                                        to="/resume"
+                                        onClick={() => {
+                                            if (isExpanded) onToggle();
+                                        }}
+                                        className="rounded-xl px-3 py-2 text-sm font-medium text-scandi-text-secondary transition-colors hover:bg-scandi-surface hover:text-scandi-charcoal"
+                                    >
+                                        Resume
+                                    </Link>
+                                </div>
+                            </div>
+                        )}
+
+                        <div className="flex min-w-[272px] items-center justify-center gap-2 rounded-[28px] border border-scandi-border/80 bg-white/92 px-4 py-2 shadow-[0_12px_32px_rgba(60,64,67,0.12)] backdrop-blur-md">
+                            <Link to="/" aria-label="Peiyuan Li home" className="rounded-xl p-2 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-scandi-sage/35">
+                                <img src={signature} alt="Peiyuan Li" className="h-8 w-24 object-contain" />
+                            </Link>
+                            <Link
+                                to="/resume"
+                                aria-label="Resume"
+                                className="rounded-xl p-2 opacity-75 transition-[opacity,background-color] hover:bg-scandi-surface hover:opacity-100 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-scandi-sage/35"
+                            >
+                                <GoogleTechIcon name="resume" className="h-6 w-6" />
+                            </Link>
+                            <button
+                                type="button"
+                                onClick={onToggle}
+                                aria-expanded={isExpanded}
+                                aria-controls="progress-navigation"
+                                aria-label={isExpanded ? "Collapse navigation" : "Expand navigation"}
+                                className="rounded-xl p-2 text-scandi-text-secondary transition-[background-color,color,transform] hover:bg-scandi-surface hover:text-scandi-charcoal active:scale-95 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-scandi-sage/35"
+                            >
+                                <svg className="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                                    {isExpanded ? (
+                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                                    ) : (
+                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 7h16M4 12h16M4 17h16" />
+                                    )}
+                                </svg>
+                            </button>
+                        </div>
+                    </div>
+                )}
             </div>
         </aside>
     );
