@@ -356,6 +356,12 @@
     animation: progressNavigationEnter 220ms cubic-bezier(0.16, 1, 0.3, 1) both;
   }
 
+  @media (min-width: 768px) {
+    .progress-navigation-panel {
+      transform-origin: bottom left;
+    }
+  }
+
   .border-glow-shell {
     --border-glow-opacity: 0;
     --border-glow-x: 50%;
