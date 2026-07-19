@@ -16,6 +16,7 @@ export interface LineSidebarProps {
     falloff?: Falloff;
     markerLength?: number;
     markerGap?: number;
+    railInset?: number;
     /** Kept for API compatibility; the between-item ticks are intentionally hidden. */
     tickScale?: number;
     /** Kept for API compatibility; the between-item ticks are intentionally hidden. */
@@ -62,6 +63,7 @@ export default function LineSidebar({
     falloff = "smooth",
     markerLength = 60,
     markerGap = 0,
+    railInset = 0,
     itemGap = 20,
     fontSize = 1.1,
     smoothing = 100,
@@ -80,6 +82,8 @@ export default function LineSidebar({
     const smoothingRef = useRef(smoothing);
     const [uncontrolledActiveIndex, setUncontrolledActiveIndex] = useState<number | null>(defaultActive);
     const activeIndex = controlledActiveIndex ?? uncontrolledActiveIndex;
+    const markerOffset = showMarker ? markerLength + markerGap : 0;
+    const railOffset = markerOffset + railInset;
 
     activeRef.current = activeIndex;
     smoothingRef.current = smoothing;
@@ -196,18 +200,18 @@ export default function LineSidebar({
                 "--max-shift": `${maxShift}px`,
                 "--item-gap": `${itemGap}px`,
                 "--font-size": `${fontSize}rem`,
-                paddingLeft: showMarker ? `${markerLength + markerGap}px` : undefined,
+                paddingLeft: `${railOffset}px`,
             } as CSSProperties}
         >
             <ul
                 ref={listRef}
                 onPointerMove={handlePointerMove}
                 onPointerLeave={handlePointerLeave}
-                className="m-0 flex list-none flex-col py-5 pr-20"
+                className="m-0 flex list-none flex-col py-5 pr-12"
                 style={{
                     gap: `${itemGap}px`,
-                    marginLeft: showMarker ? `-${markerLength + markerGap}px` : undefined,
-                    paddingLeft: showMarker ? `${markerLength + markerGap}px` : undefined,
+                    marginLeft: `-${railOffset}px`,
+                    paddingLeft: `${railOffset}px`,
                 }}
             >
                 {items.map((label, index) => (

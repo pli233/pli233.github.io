@@ -24,7 +24,7 @@ export default function ProgressRail({ items, isActive, onNavigate, isExpanded, 
     return (
         <aside className="pointer-events-none fixed inset-0 z-50">
             <div className="relative h-full w-full">
-                <div className="pointer-events-auto absolute left-0 top-1/2 -translate-y-1/2">
+                <div className="pointer-events-auto absolute left-0 top-1/2 hidden -translate-y-1/2 lg:block">
                     <LineSidebar
                         items={railItems.map((item) => item.label)}
                         accentColor="#707070"
@@ -37,6 +37,7 @@ export default function ProgressRail({ items, isActive, onNavigate, isExpanded, 
                         falloff="smooth"
                         markerLength={12}
                         markerGap={0}
+                        railInset={16}
                         tickScale={0.5}
                         scaleTick
                         itemGap={0}
