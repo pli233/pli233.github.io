@@ -1,6 +1,7 @@
 import { useState, type MouseEvent } from "react"
 import { Link, useLocation, useNavigate } from "react-router-dom"
 import { FileText, Menu } from "lucide-react"
+import { SectionRail } from "@/components/section-rail"
 import { Button } from "@/components/ui/button"
 import { buttonVariants } from "@/components/ui/button-variants"
 import {
@@ -143,6 +144,7 @@ export function SiteHeader() {
           </Sheet>
         </div>
       </div>
+      <SectionRail activeSection={activeSection} onNavigate={navigateToSection} />
     </header>
   )
 }
