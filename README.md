@@ -4,7 +4,10 @@ Source for [pli233.github.io](https://pli233.github.io/), built with React, Type
 
 ## Development
 
+Use the Node.js version declared in `.nvmrc`.
+
 ```bash
+nvm use
 npm ci
 npm run dev
 ```

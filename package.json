@@ -1,9 +1,11 @@
 {
-  "name": "peiyuan-portfolio",
+  "name": "pli233.github.io",
   "private": true,
-  "version": "0.0.0",
+  "version": "1.0.0",
   "type": "module",
-  "homepage": "https://pli233.github.io",
+  "engines": {
+    "node": ">=22.12.0 <25"
+  },
   "scripts": {
     "dev": "vite",
     "build": "vite build",
