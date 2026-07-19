@@ -29,7 +29,7 @@ export default function HeroSection() {
 
     return (
         <section id="home" className="min-h-screen pt-[76px]">
-            <div className="section-container py-20 flex items-center min-h-[calc(100vh-76px)]">
+            <div className="section-container py-20 flex items-start min-h-[calc(100vh-76px)]">
                 <div className="flex flex-col lg:flex-row items-center gap-16 lg:gap-20 w-full">
                     {/* Text Content */}
                     <div className="order-2 flex-1 space-y-6 animate-fade-in lg:order-1">
