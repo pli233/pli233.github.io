@@ -23,7 +23,7 @@ export const personalDetails: PersonalDetails = {
     tagline: "AI-native software engineer.",
     img: me, // 你可以把头像放到 public/me.jpg，然后这里写 "/me.jpg"
     about: [
-        "I recently earned my M.S. in Computer Science from Brown University and am now a Software Engineer at Google, contributing to Google Ads. My interests lie at the intersection of software systems and applied AI, with a focus on building reliable, scalable technologies that solve real-world problems.",
+        "I earned my M.S. in Computer Science from Brown University and am now a Software Engineer at Google, contributing to Google Ads. My interests lie at the intersection of software systems and applied AI, with a focus on building reliable, scalable technologies that solve real-world problems.",
         "Previously, I worked on AI infrastructure and distributed systems at Huawei, where I helped improve the performance and reliability of platforms supporting large-scale AI workloads. I have also developed applied AI solutions across healthcare and legal technology, including a medical language simplification service at Epic and agentic RAG systems for automated contract analysis.",
         "I’m especially interested in combining strong software engineering with advances in AI to create practical, trustworthy, and impactful products.",
     ],
