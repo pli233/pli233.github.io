@@ -2,7 +2,7 @@ export interface PersonalDetails {
     readonly name: string;
     readonly tagline: string;
     readonly img: string;
-    readonly about: string;
+    readonly about: readonly string[];
 }
 
 export interface SocialMediaUrl {

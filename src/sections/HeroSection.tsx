@@ -48,9 +48,11 @@ export default function HeroSection() {
                             </p>
                         </div>
 
-                        <p className="text-scandi-text-body text-[15px] leading-[1.8] max-w-xl">
-                            {about}
-                        </p>
+                        <div className="max-w-xl space-y-4 text-scandi-text-body text-[15px] leading-[1.8]">
+                            {about.map((paragraph) => (
+                                <p key={paragraph}>{paragraph}</p>
+                            ))}
+                        </div>
 
                         {/* Buttons */}
                         <div className="flex items-center gap-3 pt-3">
